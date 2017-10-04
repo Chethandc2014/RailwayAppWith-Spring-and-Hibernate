@@ -1,0 +1,6 @@
+test\com\frameworks\JPAConnectionTest.class
+test\com\irc\dao\BaseDaoImplTest.class
+test\com\frameworks\SpringHibernateIntegrationTest.class
+test\com\frameworks\HiebrnateContainerTest.class
+test\com\frameworks\SpringContainerTest.class
+test\com\frameworks\SpringTestBean.class

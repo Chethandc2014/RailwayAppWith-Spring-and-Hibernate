@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="IndianRailways">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>com.irc.model.SeatType</class>
+		<class>com.irc.model.Coach</class>
+		<class>com.irc.model.CoachType</class>
+		<class>com.irc.model.District</class>
+		<class>com.irc.model.Passenger</class>
+		<class>com.irc.model.PassengerAddress</class>
+		<class>com.irc.model.PassengerBookingDetails</class>
+		<class>com.irc.model.PnrStatus</class>
+		<class>com.irc.model.SeatCharges</class>
+		<class>com.irc.model.State</class>
+		<class>com.irc.model.Station</class>
+		<class>com.irc.model.StationTrains</class>
+		<class>com.irc.model.Taluk</class>
+		<class>com.irc.model.TrainCoaches</class>
+		<class>com.irc.model.TrainCoachSeatBooking</class>
+		<class>com.irc.model.Trains</class>
+		<class>com.irc.model.TrainStatus</class>
+		<properties>
+			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
+			<property name="hibernate.connection.password" value="INDIAN_RAILWAYS" />
+			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+			<property name="hibernate.connection.username" value="INDIAN_RAILWAYS" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.archive.autodetection" value="class" />
+		</properties>
+	 <!--    <mapping-file></mapping-file> ex:orm.xml file -->
+	  <!--   <jar-file>../../railways-1.0./WEB-INF/classes</jar-file> -->
+		
+	</persistence-unit>
+</persistence>

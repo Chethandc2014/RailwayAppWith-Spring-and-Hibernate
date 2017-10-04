@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="COACH"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="COACH_TYPE"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="DISTRICT"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="PASSENGER"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="PASSENGER_ADDRESS"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="PASSENGER_BOOKING_DETAILS"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="PNR_STATUS"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="SEAT_CHARGES"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="SEAT_TYPE"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="STATE"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="STATION"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="STATION_TRAINS"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="TALUK"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="TRAINS"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="TRAIN_COACHES"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="TRAIN_COACH_SEAT_BOOKING"/>
+  <table-filter match-schema="INDIAN_RAILWAYS" match-name="TRAIN_STATUS"/>
+</hibernate-reverse-engineering>
