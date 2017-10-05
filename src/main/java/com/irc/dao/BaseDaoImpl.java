@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  */
 @Component
-public class BaseDaoImpl implements BaseDao {
+public class BaseDaoImpl  {
 
 	    @Autowired
 		SessionFactory sf;

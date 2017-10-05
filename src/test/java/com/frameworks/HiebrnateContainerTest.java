@@ -1,4 +1,4 @@
-package test.com.frameworks;
+package com.frameworks;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

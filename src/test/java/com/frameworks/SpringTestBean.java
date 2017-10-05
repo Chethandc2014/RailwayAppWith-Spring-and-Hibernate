@@ -1,4 +1,4 @@
-package test.com.frameworks;
+package com.frameworks;
 
 public class SpringTestBean {
 
