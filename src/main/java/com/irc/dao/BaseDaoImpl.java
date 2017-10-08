@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author ADMIN
  *
  */
-@Component
+@Repository
 public class BaseDaoImpl implements BaseDao {
 
 	    @Autowired

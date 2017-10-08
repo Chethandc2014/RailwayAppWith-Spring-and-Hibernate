@@ -4,23 +4,23 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="IndianRailways">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>com.irc.model.SeatType</class>
-		<class>com.irc.model.Coach</class>
-		<class>com.irc.model.CoachType</class>
-		<class>com.irc.model.District</class>
-		<class>com.irc.model.Passenger</class>
-		<class>com.irc.model.PassengerAddress</class>
-		<class>com.irc.model.PassengerBookingDetails</class>
-		<class>com.irc.model.PnrStatus</class>
-		<class>com.irc.model.SeatCharges</class>
-		<class>com.irc.model.State</class>
-		<class>com.irc.model.Station</class>
-		<class>com.irc.model.StationTrains</class>
-		<class>com.irc.model.Taluk</class>
-		<class>com.irc.model.TrainCoaches</class>
-		<class>com.irc.model.TrainCoachSeatBooking</class>
-		<class>com.irc.model.Trains</class>
-		<class>com.irc.model.TrainStatus</class>
+		<class>com.irc.entity.SeatType</class>
+		<class>com.irc.entity.Coach</class>
+		<class>com.irc.entity.CoachType</class>
+		<class>com.irc.entity.District</class>
+		<class>com.irc.entity.Passenger</class>
+		<class>com.irc.entity.PassengerAddress</class>
+		<class>com.irc.entity.PassengerBookingDetails</class>
+		<class>com.irc.entity.PnrStatus</class>
+		<class>com.irc.entity.SeatCharges</class>
+		<class>com.irc.entity.State</class>
+		<class>com.irc.entity.Station</class>
+		<class>com.irc.entity.StationTrains</class>
+		<class>com.irc.entity.Taluk</class>
+		<class>com.irc.entity.TrainCoaches</class>
+		<class>com.irc.entity.TrainCoachSeatBooking</class>
+		<class>com.irc.entity.Trains</class>
+		<class>com.irc.entity.TrainStatus</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />

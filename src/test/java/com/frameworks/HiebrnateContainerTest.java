@@ -9,7 +9,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.irc.model.SeatType;
+import com.irc.entity.SeatType;
 
 public class HiebrnateContainerTest {
 
@@ -17,7 +17,7 @@ public class HiebrnateContainerTest {
 	 * 
 	 */
 	@Test
-	@Ignore
+	//@Ignore
 	public void test() {
 		// fail("Not yet implemented");
 		Configuration configure = new Configuration().configure();

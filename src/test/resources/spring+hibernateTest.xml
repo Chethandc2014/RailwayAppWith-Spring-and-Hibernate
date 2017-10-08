@@ -13,7 +13,9 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
-	<context:component-scan base-package="com.irc" />
+	<!-- <context:component-scan base-package="com.irc.dao"/>  Use src/main/resource path to keep context file and import from src/test/resource folder 
+	   context file
+	<context:component-scan base-package="com.irc.service" /> -->
 	<bean id="oracleDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
@@ -31,7 +33,7 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="loginDao" class="com.irc.dao.LoginDao">
+	<!-- <bean id="loginDao" class="com.irc.dao.LoginDao">
 	 <property name="name" value="chethan" ></property>
-	</bean>
+	</bean> -->
 </beans>

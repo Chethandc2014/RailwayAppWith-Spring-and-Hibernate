@@ -11,10 +11,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringContainerTest {
 
 	@Test
-	@Ignore
+	//@Ignore
 	public void test() {
 		//fail("Not yet implemented");
-		ApplicationContext apctx=new ClassPathXmlApplicationContext("applicationContext.xml");
+		ApplicationContext apctx=new ClassPathXmlApplicationContext("applicationContextTest.xml");
 		SpringTestBean myBean = (SpringTestBean)apctx.getBean("test");
         System.out.println(myBean.getMessage());
         //assertNotEquals("Spring conainer started", null, myBean);

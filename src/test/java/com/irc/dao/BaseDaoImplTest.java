@@ -15,16 +15,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.irc.controller.LoginController;
 import com.irc.dao.BaseDaoImpl;
 import com.irc.dao.LoginDao;
-import com.irc.model.Passenger;
+import com.irc.entity.Passenger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"classpath:test-Context.xml"})  
+@Transactional
 public class BaseDaoImplTest  {
 
 	/*@Autowired
 	BaseDao baseDao;*/
-	@Autowired
-	BaseDaoImpl baseDaoImpl;
+	@Autowired@Qualifier("baseDaoImpl")
+	BaseDao baseDao;
 	
 	/*@Autowired
 	LoginController loginController;
@@ -34,15 +35,15 @@ public class BaseDaoImplTest  {
 	
 	@Test
 	public void test() throws Exception {
-		System.out.println("Loging DAO Reference:"+loginDao.getName());
+		//System.out.println("Loging DAO Reference:"+loginDao.getName());
 		Passenger passenger=new Passenger();
-		passenger.setPassengerId((short) 130);
+		passenger.setPassengerId("TestUser");
 		passenger.setPassengerName("Chethan");
-		passenger.setPassword("chethan");
+		passenger.setPassword("TestPass");
 		/*ApplicationContext appctx=new ClassPathXmlApplicationContext("spring+hibernateTest.xml");
 		BaseDaoImpl baseDaoImpl = (BaseDaoImpl) appctx.getBean("baseDaoImpl");*/
 		/*baseDao.create(passenger);*/
-		baseDaoImpl.create(passenger);
+		baseDao.create(passenger);
 		 System.out.println("Record created successfully..");
 	}
 	/*public void setBaseDaoImpl(BaseDaoImpl baseDaoImpl) {

@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.irc.model.SeatType;
+import com.irc.entity.SeatType;
 
 
 
@@ -16,7 +16,7 @@ import com.irc.model.SeatType;
 public class JPAConnectionTest {
 
 	@Test
-	@Ignore
+	//@Ignore
 	public void test() {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("IndianRailways");
 		Assert.assertNotNull("JPA container initialised succesfully..", entityManagerFactory);

@@ -1,5 +1,5 @@
-package com.irc.model;
-// Generated 2 Oct, 2017 8:28:59 PM by Hibernate Tools 4.3.5.Final
+package com.irc.entity;
+// Generated 8 Oct, 2017 4:43:35 PM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "PASSENGER", schema = "INDIAN_RAILWAYS")
 public class Passenger implements java.io.Serializable {
 
-	private short passengerId;
+	private String passengerId;
 	private PassengerAddress passengerAddress;
 	private String passengerName;
 	private String gender;
@@ -31,12 +31,12 @@ public class Passenger implements java.io.Serializable {
 	public Passenger() {
 	}
 
-	public Passenger(short passengerId, String password) {
+	public Passenger(String passengerId, String password) {
 		this.passengerId = passengerId;
 		this.password = password;
 	}
 
-	public Passenger(short passengerId, PassengerAddress passengerAddress, String passengerName, String gender,
+	public Passenger(String passengerId, PassengerAddress passengerAddress, String passengerName, String gender,
 			Short age, String password, Set<PassengerBookingDetails> passengerBookingDetailses,
 			Set<PnrStatus> pnrStatuses) {
 		this.passengerId = passengerId;
@@ -51,12 +51,12 @@ public class Passenger implements java.io.Serializable {
 
 	@Id
 
-	@Column(name = "PASSENGER_ID", unique = true, nullable = false, precision = 4, scale = 0)
-	public short getPassengerId() {
+	@Column(name = "PASSENGER_ID", unique = true, nullable = false, length = 30)
+	public String getPassengerId() {
 		return this.passengerId;
 	}
 
-	public void setPassengerId(short passengerId) {
+	public void setPassengerId(String passengerId) {
 		this.passengerId = passengerId;
 	}
 

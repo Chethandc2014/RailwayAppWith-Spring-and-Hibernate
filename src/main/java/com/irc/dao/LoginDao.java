@@ -1,21 +1,21 @@
 package com.irc.dao;
 
-import org.springframework.stereotype.Component;
+import java.util.HashMap;
+
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-@Component
-public class LoginDao{
+import com.irc.entity.Passenger;
 
-	String name;
+@Repository
+public class LoginDao  extends BaseDaoImpl{
 
-	public String getName() {
-		return name;
+	@Transactional
+	public Passenger login(Passenger passenger) throws Exception {
+
+		Passenger passengerInfo = (Passenger) getObjectbyId(Passenger.class, passenger.getPassengerId());
+		return passengerInfo;
+
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	
-	
 }

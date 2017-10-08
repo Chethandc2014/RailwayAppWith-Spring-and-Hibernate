@@ -1,26 +1,34 @@
 package com.irc.controller;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.irc.model.Passenger;
+import com.irc.entity.Passenger;
 import com.irc.service.LoginService;
 
-@Component
+@RestController
+@RequestMapping("/loginController")
 public class LoginController {
 
 	@Autowired
 	LoginService loginService;
 	
-	public boolean login() {
-		boolean isLoginSuccess;
+	
+	@RequestMapping(value="/login",method=RequestMethod.POST,produces="application/json")
+	@ResponseBody
+	public String login(@RequestParam("name") String userName,@RequestParam("password") String password ) {
+		JSONObject response;
 		Passenger passenger=new Passenger();
-		passenger.setPassword("");
-		passenger.setPassengerId((short) 0);
-		isLoginSuccess=loginService.login(passenger);
+		passenger.setPassword(password);
+		passenger.setPassengerId(userName);
+		response =loginService.login(passenger);
 		 
-		 return isLoginSuccess;
+		 return response.toString();
 	}
 	
 }
