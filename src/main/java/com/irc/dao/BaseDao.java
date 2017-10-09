@@ -19,7 +19,7 @@ public interface BaseDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public <T> Object getObjectbyId(Class<T> clas,Serializable id) throws Exception;
+	public <T> Object getEntityById(Class<T> clas,Serializable id) throws Exception;
 	
 	/**
 	 * @param object

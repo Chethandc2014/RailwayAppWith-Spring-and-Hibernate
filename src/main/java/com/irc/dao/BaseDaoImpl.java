@@ -32,7 +32,7 @@ public class BaseDaoImpl implements BaseDao {
 		}
 		
 		@Transactional
-		public <T>  Object getObjectbyId(Class<T> clas, Serializable id) throws Exception {
+		public <T>  Object getEntityById(Class<T> clas, Serializable id) throws Exception {
 			try {
 				Session session = sf.getCurrentSession();
 				return session.get(clas, id);

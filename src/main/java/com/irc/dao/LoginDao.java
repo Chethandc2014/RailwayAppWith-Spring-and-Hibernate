@@ -13,7 +13,7 @@ public class LoginDao  extends BaseDaoImpl{
 	@Transactional
 	public Passenger login(Passenger passenger) throws Exception {
 
-		Passenger passengerInfo = (Passenger) getObjectbyId(Passenger.class, passenger.getPassengerId());
+		Passenger passengerInfo = (Passenger) getEntityById(Passenger.class, passenger.getPassengerId());
 		return passengerInfo;
 
 	}
