@@ -16,6 +16,14 @@
 	<context:component-scan base-package="com.irc.dao" />
 	<context:component-scan base-package="com.irc.service" />
 	<context:component-scan base-package="com.irc.controller" />
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>   <!-- both adapter  and Handler is required to change from JSON to DTO and Back DTO to JSON-->
+	  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonMessageConverter"/>
+            </list>
+        </property>
+     </bean>
 	<bean id="oracleDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
@@ -32,5 +40,8 @@
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="jsonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 	</bean>
 </beans>
