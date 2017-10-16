@@ -1,7 +1,14 @@
 package com.irc.dto;
 
-public class BookingDTO {
+import java.io.Serializable;
 
+public class BookingDTO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 610717802082333615L;
+	
 	private String trainNo;
 	private String coachId;
 	private String coachType;
