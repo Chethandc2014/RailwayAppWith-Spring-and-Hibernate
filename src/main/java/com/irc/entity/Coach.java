@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "COACH", schema = "INDIAN_RAILWAYS")
 public class Coach implements java.io.Serializable {
 
-	private short coachId;
+	private int coachId;
 	private CoachType coachType;
 	private Set<TrainCoachSeatBooking> trainCoachSeatBookings = new HashSet<TrainCoachSeatBooking>(0);
 	private Set<TrainCoaches> trainCoacheses = new HashSet<TrainCoaches>(0);
@@ -42,11 +42,11 @@ public class Coach implements java.io.Serializable {
 	@Id
 
 	@Column(name = "COACH_ID", unique = true, nullable = false, precision = 4, scale = 0)
-	public short getCoachId() {
+	public int getCoachId() {
 		return this.coachId;
 	}
 
-	public void setCoachId(short coachId) {
+	public void setCoachId(int coachId) {
 		this.coachId = coachId;
 	}
 

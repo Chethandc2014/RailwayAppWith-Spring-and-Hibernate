@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "TRAINS", schema = "INDIAN_RAILWAYS")
 public class Trains implements java.io.Serializable {
 
-	private short trainId;
+	private int trainId;
 	private String trainModel;
 	private String trainAvgSpeed;
 	private String trainSourceStation;
@@ -51,12 +51,12 @@ public class Trains implements java.io.Serializable {
 	@Id
 
 	@Column(name = "TRAIN_ID", unique = true, nullable = false, precision = 4, scale = 0)
-	public short getTrainId() {
+	public int getTrainId() {
 		return this.trainId;
 	}
 
-	public void setTrainId(short trainId) {
-		this.trainId = trainId;
+	public void setTrainId(int trainId2) {
+		this.trainId = trainId2;
 	}
 
 	@Column(name = "TRAIN_MODEL", length = 30)

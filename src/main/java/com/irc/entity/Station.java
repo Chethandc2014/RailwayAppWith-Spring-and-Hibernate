@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "STATION", schema = "INDIAN_RAILWAYS")
 public class Station implements java.io.Serializable {
 
-	private short stationId;
+	private int stationId;
 	private String stationName;
 	private String stationCode;
 	private Set<StationTrains> stationTrainses = new HashSet<StationTrains>(0);
@@ -25,11 +25,11 @@ public class Station implements java.io.Serializable {
 	public Station() {
 	}
 
-	public Station(short stationId) {
+	public Station(int stationId) {
 		this.stationId = stationId;
 	}
 
-	public Station(short stationId, String stationName, String stationCode, Set<StationTrains> stationTrainses) {
+	public Station(int stationId, String stationName, String stationCode, Set<StationTrains> stationTrainses) {
 		this.stationId = stationId;
 		this.stationName = stationName;
 		this.stationCode = stationCode;
@@ -39,12 +39,12 @@ public class Station implements java.io.Serializable {
 	@Id
 
 	@Column(name = "STATION_ID", unique = true, nullable = false, precision = 4, scale = 0)
-	public short getStationId() {
+	public int getStationId() {
 		return this.stationId;
 	}
 
-	public void setStationId(short stationId) {
-		this.stationId = stationId;
+	public void setStationId(int stationId2) {
+		this.stationId = stationId2;
 	}
 
 	@Column(name = "STATION_NAME", length = 30)
