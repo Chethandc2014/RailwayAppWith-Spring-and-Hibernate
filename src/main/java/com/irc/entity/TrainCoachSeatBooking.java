@@ -4,9 +4,12 @@ package com.irc.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -41,7 +44,8 @@ public class TrainCoachSeatBooking implements java.io.Serializable {
 	}
 
 	@Id
-
+	@SequenceGenerator(sequenceName="TRAIN_COACH_SEAT_BOOKING_SEQ",name="bookingSeq",allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="bookingSeq")
 	@Column(name = "TRAIN_COACH_SEAT_BOOKING_ID", unique = true, nullable = false, precision = 10, scale = 0)
 	public long getTrainCoachSeatBookingId() {
 		return this.trainCoachSeatBookingId;
