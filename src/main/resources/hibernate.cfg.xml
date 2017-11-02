@@ -12,22 +12,22 @@
 		<property name="format_sql">true</property>
 		<property name="use_sql_comments">true</property>
 		<property name="hibernate.dialect"> org.hibernate.dialect.OracleDialect</property>
-		<mapping class="com.irc.entity.SeatType" /> <!-- use file attribute for hbm file -->
+		<mapping class="com.irc.entity.Booking" />
 		<mapping class="com.irc.entity.Coach" />
-		<mapping class="com.irc.entity.CoachType" />
+		<mapping class="com.irc.entity.CoachType" /><!-- use file attribute for hbm file -->
 		<mapping class="com.irc.entity.District" />
 		<mapping class="com.irc.entity.Passenger" />
 		<mapping class="com.irc.entity.PassengerAddress" />
-		<mapping class="com.irc.entity.PassengerBookingDetails" />
+		<mapping class="com.irc.entity.PassengerBookingHistory" />
 		<mapping class="com.irc.entity.PnrStatus" />
 		<mapping class="com.irc.entity.SeatCharges" />
+		<mapping class="com.irc.entity.SeatType" />
 		<mapping class="com.irc.entity.State" />
 		<mapping class="com.irc.entity.Station" />
-		<mapping class="com.irc.entity.StationTrains" />
 		<mapping class="com.irc.entity.Taluk" />
-		<mapping class="com.irc.entity.TrainCoaches" />
-		<mapping class="com.irc.entity.TrainCoachSeatBooking" />
-		<mapping class="com.irc.entity.Trains" />
+		<mapping class="com.irc.entity.Train" />
+		<mapping class="com.irc.entity.TrainSchedule" />
 		<mapping class="com.irc.entity.TrainStatus" />
+		<mapping class="com.irc.entity.TrainWeeklySchedule" />
 	</session-factory>
 </hibernate-configuration>
