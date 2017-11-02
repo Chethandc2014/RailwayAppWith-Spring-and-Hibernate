@@ -5,21 +5,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.irc.entity.Coach;
 import com.irc.entity.Station;
-import com.irc.entity.Trains;
+import com.irc.entity.Train;
 
 @Repository
 @Transactional
 public class AdminDao extends BaseDaoImpl{
 
-	public void addTrain(Trains train) throws Exception {
+	public void addTrain(Train train) throws Exception {
 	
 		create(train);
 	}
 
 	public void deleteTrain(int trainId) throws Exception {
-		Trains trains = new Trains();
-		trains.setTrainId(trainId);
-		delete(trains);
+		Train train = new Train();
+		train.setTrainId((short) trainId);
+		delete(train);
 	}
 
 	public void addCoachToTrain(Coach coach) throws Exception {
@@ -30,7 +30,7 @@ public class AdminDao extends BaseDaoImpl{
 	public void removeCoachFromTrain(int coachId) throws Exception {
 
 		Coach coach = new Coach();
-		coach.setCoachId(coachId);
+		coach.setCoachId((short) coachId);
 		delete(coach);
 	}
 
@@ -43,7 +43,7 @@ public class AdminDao extends BaseDaoImpl{
 	public void deleteStation(int stationId) throws Exception {
 
 		Station stn=new Station();
-		stn.setStationId(stationId);
+		stn.setStationId((short) stationId);
 		delete(stn);
 	}
 
