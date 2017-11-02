@@ -8,9 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.irc.entity.Passenger;
 
 @Repository
+@Transactional
 public class LoginDao  extends BaseDaoImpl{
 
-	@Transactional
+	
 	public Passenger login(Passenger passenger) throws Exception {
 
 		Passenger passengerInfo = (Passenger) getEntityById(Passenger.class, passenger.getPassengerId());
