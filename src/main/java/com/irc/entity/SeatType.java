@@ -1,5 +1,5 @@
 package com.irc.entity;
-// Generated 8 Oct, 2017 4:43:35 PM by Hibernate Tools 4.3.5.Final
+// Generated 1 Nov, 2017 9:28:38 AM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,19 +20,23 @@ public class SeatType implements java.io.Serializable {
 	private long seatTypeId;
 	private String seatType;
 	private String seatTypeAcronymes;
+	private short seatLimit;
 	private Set<SeatCharges> seatChargeses = new HashSet<SeatCharges>(0);
 
 	public SeatType() {
 	}
 
-	public SeatType(long seatTypeId) {
+	public SeatType(long seatTypeId, short seatLimit) {
 		this.seatTypeId = seatTypeId;
+		this.seatLimit = seatLimit;
 	}
 
-	public SeatType(long seatTypeId, String seatType, String seatTypeAcronymes, Set<SeatCharges> seatChargeses) {
+	public SeatType(long seatTypeId, String seatType, String seatTypeAcronymes, short seatLimit,
+			Set<SeatCharges> seatChargeses) {
 		this.seatTypeId = seatTypeId;
 		this.seatType = seatType;
 		this.seatTypeAcronymes = seatTypeAcronymes;
+		this.seatLimit = seatLimit;
 		this.seatChargeses = seatChargeses;
 	}
 
@@ -63,6 +67,15 @@ public class SeatType implements java.io.Serializable {
 
 	public void setSeatTypeAcronymes(String seatTypeAcronymes) {
 		this.seatTypeAcronymes = seatTypeAcronymes;
+	}
+
+	@Column(name = "SEAT_LIMIT", nullable = false, precision = 3, scale = 0)
+	public short getSeatLimit() {
+		return this.seatLimit;
+	}
+
+	public void setSeatLimit(short seatLimit) {
+		this.seatLimit = seatLimit;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "seatType")

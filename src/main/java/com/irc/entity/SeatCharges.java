@@ -1,5 +1,5 @@
 package com.irc.entity;
-// Generated 8 Oct, 2017 4:43:35 PM by Hibernate Tools 4.3.5.Final
+// Generated 1 Nov, 2017 9:28:38 AM by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,19 +18,26 @@ public class SeatCharges implements java.io.Serializable {
 
 	private short seatChargesId;
 	private SeatType seatType;
-	private Short charge;
+	private short chargePerKm;
+	private Short expCharges;
+	private Short superFastCharges;
 
 	public SeatCharges() {
 	}
 
-	public SeatCharges(short seatChargesId) {
-		this.seatChargesId = seatChargesId;
-	}
-
-	public SeatCharges(short seatChargesId, SeatType seatType, Short charge) {
+	public SeatCharges(short seatChargesId, SeatType seatType, short chargePerKm) {
 		this.seatChargesId = seatChargesId;
 		this.seatType = seatType;
-		this.charge = charge;
+		this.chargePerKm = chargePerKm;
+	}
+
+	public SeatCharges(short seatChargesId, SeatType seatType, short chargePerKm, Short expCharges,
+			Short superFastCharges) {
+		this.seatChargesId = seatChargesId;
+		this.seatType = seatType;
+		this.chargePerKm = chargePerKm;
+		this.expCharges = expCharges;
+		this.superFastCharges = superFastCharges;
 	}
 
 	@Id
@@ -45,7 +52,7 @@ public class SeatCharges implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "SEAT_TYPE_ID")
+	@JoinColumn(name = "SEAT_TYPE_ID", nullable = false)
 	public SeatType getSeatType() {
 		return this.seatType;
 	}
@@ -54,13 +61,31 @@ public class SeatCharges implements java.io.Serializable {
 		this.seatType = seatType;
 	}
 
-	@Column(name = "CHARGE", precision = 4, scale = 0)
-	public Short getCharge() {
-		return this.charge;
+	@Column(name = "CHARGE_PER_KM", nullable = false, precision = 4, scale = 0)
+	public short getChargePerKm() {
+		return this.chargePerKm;
 	}
 
-	public void setCharge(Short charge) {
-		this.charge = charge;
+	public void setChargePerKm(short chargePerKm) {
+		this.chargePerKm = chargePerKm;
+	}
+
+	@Column(name = "EXP_CHARGES", precision = 4, scale = 0)
+	public Short getExpCharges() {
+		return this.expCharges;
+	}
+
+	public void setExpCharges(Short expCharges) {
+		this.expCharges = expCharges;
+	}
+
+	@Column(name = "SUPER_FAST_CHARGES", precision = 4, scale = 0)
+	public Short getSuperFastCharges() {
+		return this.superFastCharges;
+	}
+
+	public void setSuperFastCharges(Short superFastCharges) {
+		this.superFastCharges = superFastCharges;
 	}
 
 }

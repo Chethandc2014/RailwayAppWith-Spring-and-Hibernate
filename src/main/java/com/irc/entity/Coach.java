@@ -1,5 +1,5 @@
 package com.irc.entity;
-// Generated 8 Oct, 2017 4:43:35 PM by Hibernate Tools 4.3.5.Final
+// Generated 1 Nov, 2017 9:28:38 AM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,39 +19,50 @@ import javax.persistence.Table;
 @Table(name = "COACH", schema = "INDIAN_RAILWAYS")
 public class Coach implements java.io.Serializable {
 
-	private int coachId;
+	private short coachId;
+	private Train train;
 	private CoachType coachType;
-	private Set<TrainCoachSeatBooking> trainCoachSeatBookings = new HashSet<TrainCoachSeatBooking>(0);
-	private Set<TrainCoaches> trainCoacheses = new HashSet<TrainCoaches>(0);
+	private Set<Booking> bookings = new HashSet<Booking>(0);
 
 	public Coach() {
 	}
 
-	public Coach(short coachId) {
+	public Coach(short coachId, Train train, CoachType coachType) {
 		this.coachId = coachId;
+		this.train = train;
+		this.coachType = coachType;
 	}
 
-	public Coach(short coachId, CoachType coachType, Set<TrainCoachSeatBooking> trainCoachSeatBookings,
-			Set<TrainCoaches> trainCoacheses) {
+	public Coach(short coachId, Train train, CoachType coachType, Set<Booking> bookings) {
 		this.coachId = coachId;
+		this.train = train;
 		this.coachType = coachType;
-		this.trainCoachSeatBookings = trainCoachSeatBookings;
-		this.trainCoacheses = trainCoacheses;
+		this.bookings = bookings;
 	}
 
 	@Id
 
 	@Column(name = "COACH_ID", unique = true, nullable = false, precision = 4, scale = 0)
-	public int getCoachId() {
+	public short getCoachId() {
 		return this.coachId;
 	}
 
-	public void setCoachId(int coachId) {
+	public void setCoachId(short coachId) {
 		this.coachId = coachId;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "COACH_TYPE_ID")
+	@JoinColumn(name = "TRAIN_ID", nullable = false)
+	public Train getTrain() {
+		return this.train;
+	}
+
+	public void setTrain(Train train) {
+		this.train = train;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "COACH_TYPE_ID", nullable = false)
 	public CoachType getCoachType() {
 		return this.coachType;
 	}
@@ -61,21 +72,12 @@ public class Coach implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "coach")
-	public Set<TrainCoachSeatBooking> getTrainCoachSeatBookings() {
-		return this.trainCoachSeatBookings;
+	public Set<Booking> getBookings() {
+		return this.bookings;
 	}
 
-	public void setTrainCoachSeatBookings(Set<TrainCoachSeatBooking> trainCoachSeatBookings) {
-		this.trainCoachSeatBookings = trainCoachSeatBookings;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "coach")
-	public Set<TrainCoaches> getTrainCoacheses() {
-		return this.trainCoacheses;
-	}
-
-	public void setTrainCoacheses(Set<TrainCoaches> trainCoacheses) {
-		this.trainCoacheses = trainCoacheses;
+	public void setBookings(Set<Booking> bookings) {
+		this.bookings = bookings;
 	}
 
 }

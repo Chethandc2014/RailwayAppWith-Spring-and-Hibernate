@@ -1,5 +1,5 @@
 package com.irc.entity;
-// Generated 8 Oct, 2017 4:43:35 PM by Hibernate Tools 4.3.5.Final
+// Generated 1 Nov, 2017 9:28:38 AM by Hibernate Tools 4.3.5.Final
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class TrainStatus implements java.io.Serializable {
 
 	private short trainStatusId;
-	private Trains trains;
+	private Train train;
 	private Serializable dateOfStatus;
 	private String arrivalStnNm;
 	private Serializable arrivalTime;
@@ -32,10 +32,10 @@ public class TrainStatus implements java.io.Serializable {
 		this.trainStatusId = trainStatusId;
 	}
 
-	public TrainStatus(short trainStatusId, Trains trains, Serializable dateOfStatus, String arrivalStnNm,
+	public TrainStatus(short trainStatusId, Train train, Serializable dateOfStatus, String arrivalStnNm,
 			Serializable arrivalTime, String departureStnNm, Serializable departureTime) {
 		this.trainStatusId = trainStatusId;
-		this.trains = trains;
+		this.train = train;
 		this.dateOfStatus = dateOfStatus;
 		this.arrivalStnNm = arrivalStnNm;
 		this.arrivalTime = arrivalTime;
@@ -56,12 +56,12 @@ public class TrainStatus implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "TRAIN_ID")
-	public Trains getTrains() {
-		return this.trains;
+	public Train getTrain() {
+		return this.train;
 	}
 
-	public void setTrains(Trains trains) {
-		this.trains = trains;
+	public void setTrain(Train train) {
+		this.train = train;
 	}
 
 	@Column(name = "DATE_OF_STATUS")

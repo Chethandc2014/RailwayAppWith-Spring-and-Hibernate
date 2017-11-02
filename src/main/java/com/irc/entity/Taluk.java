@@ -1,5 +1,5 @@
 package com.irc.entity;
-// Generated 8 Oct, 2017 4:43:35 PM by Hibernate Tools 4.3.5.Final
+// Generated 1 Nov, 2017 9:28:38 AM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;

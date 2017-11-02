@@ -1,5 +1,5 @@
 package com.irc.entity;
-// Generated 8 Oct, 2017 4:43:35 PM by Hibernate Tools 4.3.5.Final
+// Generated 1 Nov, 2017 9:28:38 AM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,34 +17,34 @@ import javax.persistence.Table;
 @Table(name = "STATION", schema = "INDIAN_RAILWAYS")
 public class Station implements java.io.Serializable {
 
-	private int stationId;
+	private short stationId;
 	private String stationName;
 	private String stationCode;
-	private Set<StationTrains> stationTrainses = new HashSet<StationTrains>(0);
+	private Set<TrainSchedule> trainSchedules = new HashSet<TrainSchedule>(0);
 
 	public Station() {
 	}
 
-	public Station(int stationId) {
+	public Station(short stationId) {
 		this.stationId = stationId;
 	}
 
-	public Station(int stationId, String stationName, String stationCode, Set<StationTrains> stationTrainses) {
+	public Station(short stationId, String stationName, String stationCode, Set<TrainSchedule> trainSchedules) {
 		this.stationId = stationId;
 		this.stationName = stationName;
 		this.stationCode = stationCode;
-		this.stationTrainses = stationTrainses;
+		this.trainSchedules = trainSchedules;
 	}
 
 	@Id
 
 	@Column(name = "STATION_ID", unique = true, nullable = false, precision = 4, scale = 0)
-	public int getStationId() {
+	public short getStationId() {
 		return this.stationId;
 	}
 
-	public void setStationId(int stationId2) {
-		this.stationId = stationId2;
+	public void setStationId(short stationId) {
+		this.stationId = stationId;
 	}
 
 	@Column(name = "STATION_NAME", length = 30)
@@ -66,12 +66,12 @@ public class Station implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "station")
-	public Set<StationTrains> getStationTrainses() {
-		return this.stationTrainses;
+	public Set<TrainSchedule> getTrainSchedules() {
+		return this.trainSchedules;
 	}
 
-	public void setStationTrainses(Set<StationTrains> stationTrainses) {
-		this.stationTrainses = stationTrainses;
+	public void setTrainSchedules(Set<TrainSchedule> trainSchedules) {
+		this.trainSchedules = trainSchedules;
 	}
 
 }

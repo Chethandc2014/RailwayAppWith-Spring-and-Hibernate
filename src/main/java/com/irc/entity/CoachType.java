@@ -1,6 +1,7 @@
 package com.irc.entity;
-// Generated 8 Oct, 2017 4:43:35 PM by Hibernate Tools 4.3.5.Final
+// Generated 1 Nov, 2017 9:28:38 AM by Hibernate Tools 4.3.5.Final
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -19,20 +20,26 @@ public class CoachType implements java.io.Serializable {
 
 	private short coachTypeId;
 	private String coachType;
-	private Short coachSeats;
+	private String coachTypeAcronym;
+	private BigDecimal seatCapacity;
 	private Set<Coach> coaches = new HashSet<Coach>(0);
 
 	public CoachType() {
 	}
 
-	public CoachType(short coachTypeId) {
-		this.coachTypeId = coachTypeId;
-	}
-
-	public CoachType(short coachTypeId, String coachType, Short coachSeats, Set<Coach> coaches) {
+	public CoachType(short coachTypeId, String coachType, String coachTypeAcronym, BigDecimal seatCapacity) {
 		this.coachTypeId = coachTypeId;
 		this.coachType = coachType;
-		this.coachSeats = coachSeats;
+		this.coachTypeAcronym = coachTypeAcronym;
+		this.seatCapacity = seatCapacity;
+	}
+
+	public CoachType(short coachTypeId, String coachType, String coachTypeAcronym, BigDecimal seatCapacity,
+			Set<Coach> coaches) {
+		this.coachTypeId = coachTypeId;
+		this.coachType = coachType;
+		this.coachTypeAcronym = coachTypeAcronym;
+		this.seatCapacity = seatCapacity;
 		this.coaches = coaches;
 	}
 
@@ -47,7 +54,7 @@ public class CoachType implements java.io.Serializable {
 		this.coachTypeId = coachTypeId;
 	}
 
-	@Column(name = "COACH_TYPE", length = 15)
+	@Column(name = "COACH_TYPE", nullable = false, length = 15)
 	public String getCoachType() {
 		return this.coachType;
 	}
@@ -56,13 +63,22 @@ public class CoachType implements java.io.Serializable {
 		this.coachType = coachType;
 	}
 
-	@Column(name = "COACH_SEATS", precision = 4, scale = 0)
-	public Short getCoachSeats() {
-		return this.coachSeats;
+	@Column(name = "COACH_TYPE_ACRONYM", nullable = false, length = 30)
+	public String getCoachTypeAcronym() {
+		return this.coachTypeAcronym;
 	}
 
-	public void setCoachSeats(Short coachSeats) {
-		this.coachSeats = coachSeats;
+	public void setCoachTypeAcronym(String coachTypeAcronym) {
+		this.coachTypeAcronym = coachTypeAcronym;
+	}
+
+	@Column(name = "SEAT_CAPACITY", nullable = false, precision = 22, scale = 0)
+	public BigDecimal getSeatCapacity() {
+		return this.seatCapacity;
+	}
+
+	public void setSeatCapacity(BigDecimal seatCapacity) {
+		this.seatCapacity = seatCapacity;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "coachType")
