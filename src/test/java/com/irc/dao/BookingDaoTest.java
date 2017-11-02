@@ -15,8 +15,8 @@ public class BookingDaoTest {
 	BookingDao bookingDao;
 	
 	@Test
-	public void test() throws Exception {
-		bookingDao.bookTicket();
+	public void testGetBookingInfoByDateAndTrainID() throws Exception {
+		bookingDao.getBookingInfoByDateAndTrainID(1235, "1A");
 	}
 	
 }
