@@ -15,9 +15,27 @@ public class BookingDTO implements Serializable {
 	private String seatType;
 	private String dateOfJourney;
 	private String dateOfBooking;
+	private String boardingStn;
+	private String deBoardingStn;
 
 	public String getTrainNo() {
 		return trainNo;
+	}
+
+	public String getBoardingStn() {
+		return boardingStn;
+	}
+
+	public void setBoardingStn(String boardingStn) {
+		this.boardingStn = boardingStn;
+	}
+
+	public String getUnBoardingStn() {
+		return deBoardingStn;
+	}
+
+	public void setUnBoardingStn(String unBoardingStn) {
+		this.deBoardingStn = unBoardingStn;
 	}
 
 	public void setTrainNo(String trainNo) {
