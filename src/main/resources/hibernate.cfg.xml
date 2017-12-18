@@ -20,6 +20,7 @@
 		<mapping class="com.irc.entity.PassengerAddress" />
 		<mapping class="com.irc.entity.PassengerBookingHistory" />
 		<mapping class="com.irc.entity.PnrStatus" />
+		<mapping class="com.irc.entity.Route" />
 		<mapping class="com.irc.entity.SeatCharges" />
 		<mapping class="com.irc.entity.SeatType" />
 		<mapping class="com.irc.entity.State" />

@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BaseDaoImpl implements BaseDao {
 
 	    @Autowired
-		SessionFactory sf;
+	 SessionFactory sf;
 		
 		@Transactional
 		public Object create(Object object) throws Exception {
@@ -32,13 +32,9 @@ public class BaseDaoImpl implements BaseDao {
 		}
 		
 		@Transactional
-		public <T>  Object getEntityById(Class<T> clas, Serializable id) throws Exception {
-			try {
+		public <T>  Object getEntityById(Class<T> clas, Serializable id)  {
 				Session session = sf.getCurrentSession();
 				return session.get(clas, id);
-			} catch (Exception e) {
-				throw new Exception("Exception got while merging object", e);
-			}
 			
 		}
 		

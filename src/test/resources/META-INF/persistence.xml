@@ -12,6 +12,7 @@
 		<class> com.irc.entity.PassengerAddress </class>
 		<class> com.irc.entity.PassengerBookingHistory </class>
 		<class> com.irc.entity.PnrStatus </class>
+		<class> com.irc.entity.Route </class>
 		<class> com.irc.entity.SeatCharges </class>
 		<class> com.irc.entity.SeatType </class>
 		<class> com.irc.entity.State </class>

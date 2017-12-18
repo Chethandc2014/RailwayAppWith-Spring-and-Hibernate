@@ -1,5 +1,5 @@
 package com.irc.entity;
-// Generated 1 Nov, 2017 9:28:38 AM by Hibernate Tools 4.3.5.Final
+// Generated 3 Nov, 2017 10:44:37 PM by Hibernate Tools 4.3.5.Final
 
 import java.io.Serializable;
 import javax.persistence.Column;

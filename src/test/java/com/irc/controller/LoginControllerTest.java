@@ -2,6 +2,7 @@ package com.irc.controller;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.irc.dao.BookingDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"classpath:test-Context.xml"})
@@ -38,14 +40,23 @@ public class LoginControllerTest {
 	@Autowired 
 	WebApplicationContext wac;
 	
+	@Autowired
+	BookingDao bookingDao;
+	
 	 @Before
 	    public void setup() {
 	       // this.mockMvc = MockMvcBuilders.standaloneSetup(loginController).build();   >>> Can be used for Single Controller Testing
 	        this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();		
 	  }
 
+	 
+	@Test
+	public void test1() throws Exception {
+		//bookingDao.bookTicket();
+	}
 	
 	@Test
+	@Ignore
 	public void test() throws Exception {
     	//MockMvcRequestBuilders
 		//MockMvcResultMatchers

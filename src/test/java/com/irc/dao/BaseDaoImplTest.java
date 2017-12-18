@@ -18,7 +18,7 @@ import com.irc.dao.LoginDao;
 import com.irc.entity.Passenger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations= {"classpath:test-Context.xml"})  
+@ContextConfiguration(locations= {"classpath:test-Context.xml"})
 @Transactional
 public class BaseDaoImplTest  {
 
@@ -37,9 +37,9 @@ public class BaseDaoImplTest  {
 	public void test() throws Exception {
 		//System.out.println("Loging DAO Reference:"+loginDao.getName());
 		Passenger passenger=new Passenger();
-		passenger.setPassengerId("TestUser");
-		passenger.setPassengerName("Chethan");
-		passenger.setPassword("TestPass");
+		passenger.setPassengerId("TestUser1");
+		passenger.setPassengerName("Chethan1");
+		passenger.setPassword("TestPass1");
 		/*ApplicationContext appctx=new ClassPathXmlApplicationContext("spring+hibernateTest.xml");
 		BaseDaoImpl baseDaoImpl = (BaseDaoImpl) appctx.getBean("baseDaoImpl");*/
 		/*baseDao.create(passenger);*/

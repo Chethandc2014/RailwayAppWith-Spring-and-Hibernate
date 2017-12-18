@@ -1,9 +1,10 @@
 package com.irc.entity;
-// Generated 1 Nov, 2017 9:28:38 AM by Hibernate Tools 4.3.5.Final
+// Generated 3 Nov, 2017 10:44:37 PM by Hibernate Tools 4.3.5.Final
 
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,20 +22,20 @@ public class CoachType implements java.io.Serializable {
 	private short coachTypeId;
 	private String coachType;
 	private String coachTypeAcronym;
-	private BigDecimal seatCapacity;
+	private Short seatCapacity;
 	private Set<Coach> coaches = new HashSet<Coach>(0);
 
 	public CoachType() {
 	}
 
-	public CoachType(short coachTypeId, String coachType, String coachTypeAcronym, BigDecimal seatCapacity) {
+	public CoachType(short coachTypeId, String coachType, String coachTypeAcronym, Short seatCapacity) {
 		this.coachTypeId = coachTypeId;
 		this.coachType = coachType;
 		this.coachTypeAcronym = coachTypeAcronym;
 		this.seatCapacity = seatCapacity;
 	}
 
-	public CoachType(short coachTypeId, String coachType, String coachTypeAcronym, BigDecimal seatCapacity,
+	public CoachType(short coachTypeId, String coachType, String coachTypeAcronym, Short seatCapacity,
 			Set<Coach> coaches) {
 		this.coachTypeId = coachTypeId;
 		this.coachType = coachType;
@@ -73,11 +74,11 @@ public class CoachType implements java.io.Serializable {
 	}
 
 	@Column(name = "SEAT_CAPACITY", nullable = false, precision = 22, scale = 0)
-	public BigDecimal getSeatCapacity() {
+	public Short getSeatCapacity() {
 		return this.seatCapacity;
 	}
 
-	public void setSeatCapacity(BigDecimal seatCapacity) {
+	public void setSeatCapacity(Short seatCapacity) {
 		this.seatCapacity = seatCapacity;
 	}
 

@@ -1,5 +1,5 @@
 package com.irc.entity;
-// Generated 1 Nov, 2017 9:28:38 AM by Hibernate Tools 4.3.5.Final
+// Generated 3 Nov, 2017 10:44:37 PM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -61,7 +61,7 @@ public class Coach implements java.io.Serializable {
 		this.train = train;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "COACH_TYPE_ID", nullable = false)
 	public CoachType getCoachType() {
 		return this.coachType;

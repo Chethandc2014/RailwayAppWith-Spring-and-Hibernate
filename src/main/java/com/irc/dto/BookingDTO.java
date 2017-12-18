@@ -12,6 +12,7 @@ public class BookingDTO implements Serializable {
 	private String trainNo;
 	private String coachId;
 	private String coachType;
+	private String routeId;
 	private String seatType;
 	private String dateOfJourney;
 	private String dateOfBooking;
@@ -30,12 +31,20 @@ public class BookingDTO implements Serializable {
 		this.boardingStn = boardingStn;
 	}
 
-	public String getUnBoardingStn() {
+	public String getRouteId() {
+		return routeId;
+	}
+
+	public void setRouteId(String routeId) {
+		this.routeId = routeId;
+	}
+
+	public String getDeBoardingStn() {
 		return deBoardingStn;
 	}
 
-	public void setUnBoardingStn(String unBoardingStn) {
-		this.deBoardingStn = unBoardingStn;
+	public void setDeBoardingStn(String deBoardingStn) {
+		this.deBoardingStn = deBoardingStn;
 	}
 
 	public void setTrainNo(String trainNo) {
