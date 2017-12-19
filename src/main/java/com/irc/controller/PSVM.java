@@ -1,24 +1,8 @@
 package com.irc.controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
-import org.json.JSONObject;
-import org.omg.CORBA.TIMEOUT;
-import org.springframework.util.SystemPropertyUtils;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.irc.entity.SeatType;
-
-import oracle.net.aso.g;
 
 public class PSVM {
 

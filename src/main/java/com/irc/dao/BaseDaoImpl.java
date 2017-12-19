@@ -24,7 +24,9 @@ public class BaseDaoImpl implements BaseDao {
 	
 			try {
 				Session session = sf.getCurrentSession();
-				return session.save(object);
+				 Serializable id = session.save(object);
+				 
+				 return id;
 			} catch (Exception e) {
 				throw new Exception("Exception got while adding object", e);
 			}

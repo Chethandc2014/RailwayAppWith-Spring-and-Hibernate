@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.irc.dao.PassengerDao;
+import com.irc.dto.PassengerDTO;
 import com.irc.entity.Booking;
 import com.irc.entity.Passenger;
 
@@ -14,10 +15,11 @@ public class PassengerService {
 	@Autowired
 	PassengerDao passengerDao;
 	
-	public JSONObject register(Passenger passenger) {
+	public JSONObject register(PassengerDTO passengerDto) {
 		JSONObject response=new JSONObject();
 		try {
 			
+			Passenger passenger = convertDtoToEntity(passengerDto);
 			passengerDao.register(passenger);
 			response.put("status", "success");
 			response.put("message", "Registration done successfully.");
@@ -63,6 +65,19 @@ public class PassengerService {
 	public void passwordChange() {
 
 	}
+	
+	public Passenger convertDtoToEntity(PassengerDTO dto) {
+		
+		Passenger passenger=new Passenger();
+		passenger.setPassengerId(dto.getId());
+		passenger.setPassengerName(dto.getName());
+		passenger.setGender(dto.getGender());
+		passenger.setPassword(dto.getPassword());
+		passenger.setAge(Short.parseShort(dto.getAge()));
+		return passenger;
+	}
+	
+	
 	
 }
 

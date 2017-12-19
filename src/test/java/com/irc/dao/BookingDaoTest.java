@@ -26,6 +26,14 @@ public class BookingDaoTest {
 	@Autowired
 	BookingDao bookingDao;
 	
+	
+	@Test
+	public void testBookTicket() {
+		
+		//bookingDao.bookTicket(booking);
+	}
+	
+	
 	@Test
 	public void testGetActiveBookingCoachIdAndSeatNoReturnObjectForValidInputs() throws ParseException, Exception {
 
