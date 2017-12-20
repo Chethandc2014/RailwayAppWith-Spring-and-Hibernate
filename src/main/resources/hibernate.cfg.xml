@@ -15,7 +15,7 @@
 		<property name="use_sql_comments">true</property>
 		<mapping class="com.irc.entity.Booking" />
 		<mapping class="com.irc.entity.Coach" />
-		<mapping class="com.irc.entity.CoachType" /><!-- use file attribute for hbm file -->
+		<mapping class="com.irc.entity.CoachType" />
 		<mapping class="com.irc.entity.District" />
 		<mapping class="com.irc.entity.Passenger" />
 		<mapping class="com.irc.entity.PassengerAddress" />

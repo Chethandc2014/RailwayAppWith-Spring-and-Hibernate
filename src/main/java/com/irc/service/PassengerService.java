@@ -4,11 +4,11 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.irc.constants.AppConstants.*;
 import com.irc.dao.PassengerDao;
 import com.irc.dto.PassengerDTO;
 import com.irc.entity.Booking;
 import com.irc.entity.Passenger;
-
 @Service
 public class PassengerService {
 
@@ -20,12 +20,19 @@ public class PassengerService {
 		try {
 			
 			Passenger passenger = convertDtoToEntity(passengerDto);
-			passengerDao.register(passenger);
-			response.put("status", "success");
-			response.put("message", "Registration done successfully.");
+			
+			if(passengerDao.isPassengerExist(passenger.getPassengerId())) {//Check User already exist or not..
+				response.put(STATUS, FAIL);
+				response.put(MESSAGE, "This ID is already registered..Please try with different ID..");
+			}else {
+				passengerDao.register(passenger);
+				response.put(STATUS, SUCCESS);
+				response.put(MESSAGE, "Registration done successfully.");
+			}
+			
 		} catch (Exception e) {
-			response.put("status", "fail");
-			response.put("message", e.getMessage());
+			response.put(STATUS, FAIL);
+			response.put(MESSAGE, e.getMessage());
 		}
 		return response;
 	}

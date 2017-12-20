@@ -20,6 +20,12 @@ public class PassengerDao extends BaseDaoImpl{
 		}
 	}
 	
+	public boolean isPassengerExist(String passengerId) {
+		
+		Object entityById = getEntityById(Passenger.class, passengerId);
+		return entityById!=null?true:false;
+	}
+	
 	public <T> Passenger getPassengerDetails(Class<T> passengerClass,String passengerId) throws Exception {
 		Passenger passenger=null;
 		try {
