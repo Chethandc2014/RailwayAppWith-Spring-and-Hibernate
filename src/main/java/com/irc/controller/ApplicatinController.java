@@ -30,13 +30,15 @@ public class ApplicatinController {
 	BookingService bookingService;
 	
 	
-	@RequestMapping(value="/booking",method=RequestMethod.POST,consumes="application/json",produces="")
-	public  JSONObject bookTicket(@RequestBody BookingDTO bookingDTO,HttpServletResponse httpResponse) {
+	@RequestMapping(value="/booking",method=RequestMethod.POST,consumes="application/json",produces="application/json")
+	public  JsonResponseWrapper bookTicket(@RequestBody BookingDTO bookingDTO,HttpServletResponse httpResponse) {
 		JSONObject response = bookingService.bookTiket(bookingDTO);
 		// httpResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:8090");
 		//httpResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
 		//httpResponse.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-		return response;
+		
+		JsonResponseWrapper.createResponseWrapper(response.toString());
+		return JsonResponseWrapper.createResponseWrapper(response.toString());
 	}
 	
 }
