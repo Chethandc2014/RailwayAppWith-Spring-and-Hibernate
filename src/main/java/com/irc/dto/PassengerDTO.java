@@ -8,6 +8,14 @@ public class PassengerDTO {
 	String password;
 	String gender;
 	
+	AddressDTO address;
+	
+	public AddressDTO getAddress() {
+		return address;
+	}
+	public void setAddress(AddressDTO address) {
+		this.address = address;
+	}
 	public String getGender() {
 		return gender;
 	}
