@@ -1,6 +1,6 @@
 package com.irc.dto;
 
-public class PassengerDTO {
+public class PassengerDto {
 
 	String id;
 	String name;
@@ -8,12 +8,12 @@ public class PassengerDTO {
 	String password;
 	String gender;
 	
-	AddressDTO address;
+	AddressDto address;
 	
-	public AddressDTO getAddress() {
+	public AddressDto getAddress() {
 		return address;
 	}
-	public void setAddress(AddressDTO address) {
+	public void setAddress(AddressDto address) {
 		this.address = address;
 	}
 	public String getGender() {

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.irc.dto.BookingDTO;
+import com.irc.dto.BookingDto;
 import com.irc.dto.JsonResponseWrapper;
 import com.irc.service.BookingService;
 
@@ -31,7 +31,7 @@ public class ApplicatinController {
 	
 	
 	@RequestMapping(value="/booking",method=RequestMethod.POST,consumes="application/json",produces="application/json")
-	public  JsonResponseWrapper bookTicket(@RequestBody BookingDTO bookingDTO,HttpServletResponse httpResponse) {
+	public  JsonResponseWrapper bookTicket(@RequestBody BookingDto bookingDTO,HttpServletResponse httpResponse) {
 		JSONObject response = bookingService.bookTiket(bookingDTO);
 		// httpResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:8090");
 		//httpResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");

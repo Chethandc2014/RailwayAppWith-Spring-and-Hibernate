@@ -31,5 +31,9 @@
 		<mapping class="com.irc.entity.TrainSchedule" />
 		<mapping class="com.irc.entity.TrainStatus" />
 		<mapping class="com.irc.entity.TrainWeeklySchedule" />
+		<mapping class="com.irc.entity.RouteStation" />
+		<mapping class="com.irc.entity.RouteTrain" />
+		<mapping class="com.irc.entity.RouteTrainId" />
+		
 	</session-factory>
 </hibernate-configuration>

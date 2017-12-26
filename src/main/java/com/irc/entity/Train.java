@@ -31,6 +31,7 @@ public class Train implements java.io.Serializable {
 	private Set<TrainSchedule> trainSchedules = new HashSet<TrainSchedule>(0);
 	private Set<Booking> bookings = new HashSet<Booking>(0);
 	private Set<Coach> coaches = new HashSet<Coach>(0);
+	private Set<RouteTrain> routeTrains = new HashSet<RouteTrain>(0);
 
 	public Train() {
 	}
@@ -185,6 +186,15 @@ public class Train implements java.io.Serializable {
 
 	public void setCoaches(Set<Coach> coaches) {
 		this.coaches = coaches;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "train")
+	public Set<RouteTrain> getRouteTrains() {
+		return this.routeTrains;
+	}
+
+	public void setRouteTrains(Set<RouteTrain> routeTrains) {
+		this.routeTrains = routeTrains;
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.irc.dto.TrainSearchDto;
 import com.irc.entity.District;
 import com.irc.entity.Passenger;
 import com.irc.entity.PassengerAddress;
@@ -71,4 +72,22 @@ public class PassengerServiceTest {
 		Assert.assertEquals("Passenger Detials got successfully", "success", response.getString("status"));
 		System.out.println(response.toString());
 	}
+	
+	@Test
+	public void testSearchTrain() {
+		
+		TrainSearchDto dto=new TrainSearchDto();
+		dto.setSource("BENGALURU");
+		dto.setDestination("HUBLI");
+		dto.setDateOfJourney("08/11/2017");
+		passengerService.searchTrain(dto);
+		
+	}
+	
+	
+	
+	
+	
+	
 }
+

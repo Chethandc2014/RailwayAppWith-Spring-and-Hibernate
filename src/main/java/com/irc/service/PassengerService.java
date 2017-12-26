@@ -5,17 +5,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static com.irc.constants.AppConstants.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import com.irc.dao.PassengerDao;
-import com.irc.dto.PassengerDTO;
+import com.irc.dao.SearchDao;
+import com.irc.dto.PassengerDto;
+import com.irc.dto.TrainSearchDto;
 import com.irc.entity.Booking;
 import com.irc.entity.Passenger;
+import com.irc.entity.Train;
+import static com.irc.constants.AppConstants.*;
 @Service
 public class PassengerService {
 
 	@Autowired
 	PassengerDao passengerDao;
 	
-	public JSONObject register(PassengerDTO passengerDto) {
+	@Autowired
+	SearchDao searchDao;
+	
+	@Autowired
+	SearchService searchService;
+	
+	public JSONObject register(PassengerDto passengerDto) {
 		JSONObject response=new JSONObject();
 		try {
 			
@@ -73,7 +89,7 @@ public class PassengerService {
 
 	}
 	
-	public Passenger convertDtoToEntity(PassengerDTO dto) {
+	public Passenger convertDtoToEntity(PassengerDto dto) {
 		
 		Passenger passenger=new Passenger();
 		passenger.setPassengerId(dto.getId());
@@ -84,7 +100,24 @@ public class PassengerService {
 		return passenger;
 	}
 	
-	
+	public JSONObject searchTrain(TrainSearchDto dto) {
+		JSONObject response=new JSONObject();
+		Date dateOfJourney=null;
+		try {
+			dateOfJourney =new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDateOfJourney());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		return	response.put(FAIL, "Invalided Date formate..");
+		}
+		//List<Train> trains = searchswe.getTrains(dto.getSource(), dto.getDestination(),dateOfJourney);
+		List<Train> trains=searchService.getTrainForSourceAndDestinationStn(dto.getSource(), dto.getDestination(), dateOfJourney);
+		
+		response.put("trainList", trains);
+		response.put(STATUS, SUCCESS);
+		
+		return response;
+		
+	}
 	
 }
 

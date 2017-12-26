@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BaseDaoImpl implements BaseDao {
 
 	    @Autowired
-	 SessionFactory sf;
+	protected SessionFactory sf;
 		
 		@Transactional
 		public Object create(Object object) throws Exception {

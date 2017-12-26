@@ -4,10 +4,15 @@ package com.irc.entity;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,6 +26,8 @@ public class Route implements java.io.Serializable {
 	private short routeId;
 	private String routeStartingStn;
 	private String routeEndingStn;
+	private Set<RouteTrain> routeTrains = new HashSet<RouteTrain>(0);
+	private Set<RouteStation> routeStations = new HashSet<RouteStation>(0);
 	private Set<Booking> bookings = new HashSet<Booking>(0);
 
 	public Route() {
@@ -69,6 +76,24 @@ public class Route implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+	public Set<RouteTrain> getRouteTrains() {
+		return this.routeTrains;
+	}
+
+	public void setRouteTrains(Set<RouteTrain> routeTrains) {
+		this.routeTrains = routeTrains;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+	public Set<RouteStation> getRouteStations() {
+		return this.routeStations;
+	}
+
+	public void setRouteStations(Set<RouteStation> routeStations) {
+		this.routeStations = routeStations;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<Booking> getBookings() {
 		return this.bookings;
 	}
@@ -76,5 +101,19 @@ public class Route implements java.io.Serializable {
 	public void setBookings(Set<Booking> bookings) {
 		this.bookings = bookings;
 	}
+
+	/*@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="ROUTE_STATION",schema="INDIAN_RAILWAYS",joinColumns= {
+	@JoinColumn(name="ROUTE_ID")},
+	inverseJoinColumns= {
+	@JoinColumn(name="STATION_ID")		
+	})
+	public Set<Station> getStations() {
+		return stations;
+	}
+
+	public void setStations(Set<Station> stations) {
+		this.stations = stations;
+	}*/
 
 }

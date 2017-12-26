@@ -1,6 +1,6 @@
 package com.irc.dto;
 
-public class AddressDTO {
+public class AddressDto {
 	
 	String houseNo;
 	String street;

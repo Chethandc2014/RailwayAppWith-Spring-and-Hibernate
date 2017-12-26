@@ -2,7 +2,7 @@ package com.irc.dto;
 
 import java.io.Serializable;
 
-public class BookingDTO implements Serializable {
+public class BookingDto implements Serializable {
 
 	/**
 	 * 

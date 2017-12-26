@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.irc.dao.BookingDao;
-import com.irc.dto.BookingDTO;
+import com.irc.dto.BookingDto;
 import com.irc.entity.Booking;
 import com.irc.entity.Coach;
 import com.irc.entity.CoachSeatNotAvailableException;
@@ -31,8 +31,12 @@ public class BookingService {
 	@Autowired
 	BookingDao bookingDao;
 	
+	/**
+	 * @param bookingDTO
+	 * @return
+	 */
 	@Transactional
-	public JSONObject bookTiket(BookingDTO bookingDTO) {
+	public JSONObject bookTiket(BookingDto bookingDTO) {
 		JSONObject response = new JSONObject();
 		try {
 			//Booking Business Logic
@@ -94,7 +98,14 @@ public class BookingService {
 		
 	}
 
-	private Booking generateBookingEntity(BookingDTO  bookingDTO,short coachId) throws ParseException, CoachSeatNotAvailableException  {
+	/**
+	 * @param bookingDTO
+	 * @param coachId
+	 * @return
+	 * @throws ParseException
+	 * @throws CoachSeatNotAvailableException
+	 */
+	private Booking generateBookingEntity(BookingDto  bookingDTO,short coachId) throws ParseException, CoachSeatNotAvailableException  {
 		Date dateOfJourney = new SimpleDateFormat("dd/MM/yyyy").parse(bookingDTO.getDateOfJourney());
 		short trainId=Short.valueOf(bookingDTO.getTrainNo());
 		short routeId = Short.parseShort(bookingDTO.getRouteId());
