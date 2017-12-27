@@ -162,6 +162,7 @@ public class SearchDao extends BaseDaoImpl{
 	 * @param train
 	 * @param list
 	 */
+	@Transactional
 	public void addToTrainList(boolean isDayPresent,Train train,ArrayList<Train> list) {
 		if(isDayPresent) {
 			list.add(train);

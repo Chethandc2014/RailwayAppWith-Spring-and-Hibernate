@@ -15,6 +15,10 @@ public class AdminDao extends BaseDaoImpl{
 	
 		create(train);
 	}
+	
+	public void updateTrain(Train trainId) throws Exception {
+		update(trainId);
+	}
 
 	public void deleteTrain(int trainId) throws Exception {
 		Train train = new Train();
