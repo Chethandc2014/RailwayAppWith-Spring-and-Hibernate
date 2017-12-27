@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.irc.dto.BookingDto;
 import com.irc.dto.JsonResponseWrapper;
 import com.irc.dto.PassengerDto;
@@ -39,15 +42,16 @@ public class PassengerController {
 	
 	
 	@RequestMapping(value="/search",method=RequestMethod.GET,produces="application/json")
-	public JsonResponseWrapper search(@RequestParam("sourceStn") String source,@RequestParam("destinationStn") String destination,
+	public  ObjectNode search(@RequestParam("sourceStn") String source,@RequestParam("destinationStn") String destination,
 			@RequestParam("dateOfJourney") String dateOfJourney) {
 		
 		TrainSearchDto trainSearchDto=new TrainSearchDto();
 		trainSearchDto.setSource(source);
 		trainSearchDto.setDestination(destination);
 		trainSearchDto.setDateOfJourney(dateOfJourney);
-		JSONObject response = passengerService.searchTrain(trainSearchDto);
-		return JsonResponseWrapper.createResponseWrapper(response.toString());
+		//JSONObject response = passengerService.searchTrain(trainSearchDto);
+		ObjectNode objectNode = passengerService.searchTrain(trainSearchDto);
+		return objectNode;
 
 	}
 	

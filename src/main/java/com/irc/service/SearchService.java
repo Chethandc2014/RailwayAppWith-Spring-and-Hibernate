@@ -11,12 +11,14 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.irc.dao.SearchDao;
 import com.irc.entity.Route;
 import com.irc.entity.Train;
 
 @Service
+@Transactional
 public class SearchService {
 
 	@Autowired
@@ -30,6 +32,7 @@ public class SearchService {
 	 * @param dateOfJourney
 	 * @return
 	 */
+	
 	public ArrayList<Train> getTrainForSourceAndDestinationStn(String sourceStn,String destinationStn,Date dateOfJourney){
 		
 	

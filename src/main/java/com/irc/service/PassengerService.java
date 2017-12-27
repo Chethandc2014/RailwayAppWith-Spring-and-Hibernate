@@ -3,6 +3,7 @@ package com.irc.service;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.irc.constants.AppConstants.*;
 
@@ -11,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.irc.dao.PassengerDao;
 import com.irc.dao.SearchDao;
 import com.irc.dto.PassengerDto;
@@ -100,20 +104,36 @@ public class PassengerService {
 		return passenger;
 	}
 	
-	public JSONObject searchTrain(TrainSearchDto dto) {
-		JSONObject response=new JSONObject();
+	@Transactional
+	public ObjectNode searchTrain(TrainSearchDto dto) {
+		
+		ObjectMapper mapperResponse = new ObjectMapper();
+		ObjectNode response = mapperResponse.createObjectNode();//Similar use case like //JSONObject response=new JSONObject(); 
 		Date dateOfJourney=null;
 		try {
-			dateOfJourney =new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDateOfJourney());
-		} catch (ParseException e) {
+			try {
+				dateOfJourney =new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDateOfJourney());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			return	response.put(FAIL, "Invalided Date formate..");
+			}
+			//List<Train> trains = searchswe.getTrains(dto.getSource(), dto.getDestination(),dateOfJourney);
+			List<Train> trains=searchService.getTrainForSourceAndDestinationStn(dto.getSource(), dto.getDestination(), dateOfJourney);
+			
+			ObjectMapper objectMapper=new ObjectMapper();//For Converting POJO to JSON..
+			try {
+				//response.put("trainList", trains);//Getting error--changing using  jackson API comversion
+				String trainListStr = objectMapper.writeValueAsString(trains);
+				response.put("trainList", trainListStr);
+				response.put(STATUS, SUCCESS);
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+				return	response.put(FAIL, "Error while parsing entities..."+e.getMessage());
+			}			
+		}catch(Exception e) {
 			e.printStackTrace();
-		return	response.put(FAIL, "Invalided Date formate..");
+			return	response.put(FAIL, e.getMessage());
 		}
-		//List<Train> trains = searchswe.getTrains(dto.getSource(), dto.getDestination(),dateOfJourney);
-		List<Train> trains=searchService.getTrainForSourceAndDestinationStn(dto.getSource(), dto.getDestination(), dateOfJourney);
-		
-		response.put("trainList", trains);
-		response.put(STATUS, SUCCESS);
 		
 		return response;
 		
