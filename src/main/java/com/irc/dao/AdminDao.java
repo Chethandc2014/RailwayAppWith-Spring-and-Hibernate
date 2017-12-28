@@ -1,5 +1,7 @@
 package com.irc.dao;
 
+import java.io.Serializable;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,9 +13,9 @@ import com.irc.entity.Train;
 @Transactional
 public class AdminDao extends BaseDaoImpl{
 
-	public void addTrain(Train train) throws Exception {
+	public Serializable addTrain(Train train) throws Exception {
 	
-		create(train);
+		return (Serializable)create(train);
 	}
 	
 	public void updateTrain(Train trainId) throws Exception {
