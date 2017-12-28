@@ -57,7 +57,7 @@ public class PassengerController {
 
 	}
 	
-	@RequestMapping(value="/booking/history{passengerId}",method=RequestMethod.GET,produces="application/json")
+	@RequestMapping(value="/booking/history/{passengerId}",method=RequestMethod.GET,produces="application/json")
 	public  ObjectNode getBookingHistory(@PathVariable String  passengerId) {
 		ObjectNode objectNode = bookingService.getBookingHistory(passengerId);
 		return objectNode;
