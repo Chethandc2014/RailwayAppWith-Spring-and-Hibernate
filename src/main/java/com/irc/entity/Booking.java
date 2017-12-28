@@ -80,7 +80,7 @@ public class Booking implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ROUTE_ID")
-	@JsonManagedReference
+	@JsonBackReference
 	public Route getRoute() {
 		return this.route;
 	}
@@ -91,7 +91,7 @@ public class Booking implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "TRAIN_ID")
-	@JsonManagedReference
+	@JsonBackReference
 	public Train getTrain() {
 		return this.train;
 	}
@@ -102,7 +102,7 @@ public class Booking implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "COACH_ID")
-	@JsonManagedReference
+	@JsonBackReference
 	public Coach getCoach() {
 		return this.coach;
 	}

@@ -56,7 +56,7 @@ public class Coach implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "TRAIN_ID", nullable = false)
-	@JsonManagedReference
+	//@JsonManagedReference
 	public Train getTrain() {
 		return this.train;
 	}
@@ -67,7 +67,7 @@ public class Coach implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "COACH_TYPE_ID", nullable = false)
-	@JsonManagedReference
+	//@JsonManagedReference
 	public CoachType getCoachType() {
 		return this.coachType;
 	}
@@ -77,7 +77,7 @@ public class Coach implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "coach")
-	@JsonBackReference
+	@JsonManagedReference
 	public Set<Booking> getBookings() {
 		return this.bookings;
 	}

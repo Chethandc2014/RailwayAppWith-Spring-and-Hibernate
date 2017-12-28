@@ -176,7 +176,7 @@ public class Train implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "train")
-	@JsonBackReference
+	@JsonManagedReference
 	public Set<Booking> getBookings() {
 		return this.bookings;
 	}
