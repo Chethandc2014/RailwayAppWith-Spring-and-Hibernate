@@ -1,5 +1,6 @@
 package com.irc.service;
 
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import com.irc.dto.PassengerDto;
 import com.irc.dto.TrainSearchDto;
 import com.irc.entity.Booking;
 import com.irc.entity.Passenger;
+import com.irc.entity.PassengerAddress;
 import com.irc.entity.Train;
 import com.irc.util.AppUtil;
 
@@ -101,6 +103,12 @@ public class PassengerService {
 		passenger.setGender(dto.getGender());
 		passenger.setPassword(dto.getPassword());
 		passenger.setAge(Short.parseShort(dto.getAge()));
+		PassengerAddress address=new PassengerAddress();
+		passenger.setPassengerAddress(address);
+		address.setHouseNo(dto.getAddress().getHouseNo());
+		address.setStreet(dto.getAddress().getStreet());
+		
+		//address.setTaluk();
 		return passenger;
 	}
 	
