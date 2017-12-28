@@ -29,16 +29,24 @@
             </list>
         </property>
      </bean>
-	<bean id="oracleDataSource"
+	<!-- <bean id="oracleDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 		<property name="username" value="INDIAN_RAILWAYS"></property>
 		<property name="password" value="INDIAN_RAILWAYS"></property>
+	</bean> -->
+	<bean id="h2DataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.h2.Driver"></property>
+		<property name="url" value="jdbc:h2:tcp://localhost/~/INDIAN_RAILWAYS"></property>
+		<property name="username" value="sa"></property>
+		<property name="password" value="sa"></property>
 	</bean>
+	
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="oracleDataSource"></property>
+		<property name="dataSource" ref="h2DataSource"></property>
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
 	</bean>
 	<tx:annotation-driven proxy-target-class="true"/>

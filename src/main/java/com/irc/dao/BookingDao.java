@@ -15,6 +15,7 @@ import static com.irc.constants.AppConstants.COACH_SL;
 import static com.irc.constants.AppConstants.COACH_SL_TOTAL;
 import static com.irc.constants.AppConstants.SEAT_NO;
 
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +32,7 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.irc.dto.BookingDTO;
+import com.irc.dto.BookingDto;
 import com.irc.entity.Booking;
 import com.irc.entity.Coach;
 import com.irc.entity.CoachSeatNotAvailableException;
@@ -46,12 +48,26 @@ public class BookingDao extends BaseDaoImpl{
 
 	
 	
+	/**
+	 * @param booking
+	 * @return
+	 * @throws Exception
+	 */
 	public Booking bookTicket(Booking booking) throws Exception {
 		
 		Serializable id = (Serializable) create(booking);
 		Booking successBookingInfo = (Booking) getEntityById(Booking.class, id);
 		return successBookingInfo;
 	}
+	
+	/**
+	 * @param dateOfJourney
+	 * @param routeId
+	 * @param trainID
+	 * @param coachId
+	 * @return
+	 * @throws CoachSeatNotAvailableException
+	 */
 	public short getBookingSeatNoByCoachId(Date dateOfJourney, int routeId, int trainID,short coachId) throws CoachSeatNotAvailableException {
 
 	    	Query query = sf.getCurrentSession().createQuery("select max(booking.seatNo)+1 as seatNo from Booking as booking where "
@@ -80,6 +96,14 @@ public class BookingDao extends BaseDaoImpl{
 	}
 	
 	
+	/**
+	 * @param dateOfJourney
+	 * @param routeId
+	 * @param trainID
+	 * @param coachType
+	 * @return
+	 * @throws Exception
+	 */
 	public Map<String,Short> getActiveBookingCoachIdAndSeatNO(Date dateOfJourney, int routeId, int trainID, String coachType) throws Exception {
 
 		Map<String,Short> map=new HashMap<String, Short>();
@@ -115,6 +139,12 @@ public class BookingDao extends BaseDaoImpl{
 		return map;
 	}
 	
+	
+	/**
+	 * @param clas
+	 * @param taindId
+	 * @return
+	 */
 	public boolean checkTrainIdExistInSystem(Class<Train> clas,int taindId) {
 			
 		      Object entityById = getEntityById(clas, Short.valueOf((short)taindId));//Train ID is expecting be in Short According DB
@@ -125,6 +155,10 @@ public class BookingDao extends BaseDaoImpl{
 			  	}
    	}
 	
+	/**
+	 * @param coachType
+	 * @return
+	 */
 	public CoachType getCoachTypeEntity(String coachType) {
 
 		  Query query = sf.getCurrentSession().createQuery("select coachType from CoachType as coachType where coachType.coachType = :coachType");
@@ -134,6 +168,15 @@ public class BookingDao extends BaseDaoImpl{
 	
 	}
 	
+	/**
+	 * @param dateOfJourney
+	 * @param routeId
+	 * @param trainID
+	 * @param coachType
+	 * @return
+	 * @throws TrainNotExistException
+	 * @throws BookingNotAvailableException
+	 */
 	public Short getNextCoachIDByDateRouteAndTrainId(Date dateOfJourney,int routeId,int trainID,String coachType) throws TrainNotExistException, BookingNotAvailableException  {
 
 		 Short nextCoachId=null;
@@ -168,6 +211,12 @@ public class BookingDao extends BaseDaoImpl{
 	
 	}
 	
+	
+	/**
+	 * @param trainID
+	 * @param coachType
+	 * @return
+	 */
 	public Short getCoachIdByTrainIdAndCoachType(int trainID,String coachType) {
 		Short coachId=null;
 		String selectCoachFromBookingQuery="select booking.coach.coachId from Booking as booking where "
@@ -189,6 +238,12 @@ public class BookingDao extends BaseDaoImpl{
 		}
 		return coachId;
 	}
+	
+	
+	/**
+	 * @param coachType
+	 * @return
+	 */
 	public Short getMaxSeatLimitForCoachByCoachType(String coachType) {
 
 		Query query = sf.getCurrentSession().createQuery("select coachtype.seatCapacity from CoachType as coachtype where coachtype.coachType = ?");
@@ -199,6 +254,14 @@ public class BookingDao extends BaseDaoImpl{
 	}
 	
 	
+	/**
+	 * @param dateOfJourneyStr
+	 * @param routeId
+	 * @param trainID
+	 * @param coachType
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Booking> getBookingListByDateRouteAndTrainID(String dateOfJourneyStr,int routeId,int trainID,String coachType) throws Exception {
 
 		List<Booking> bookingList=null;
@@ -227,6 +290,11 @@ public class BookingDao extends BaseDaoImpl{
 	}
 	
 	
+	/**
+	 * @param pnrNo
+	 * @return
+	 * @throws Exception
+	 */
 	public Booking getBookingInfoByPnrNo(long pnrNo) throws Exception {
 		List bookingList=null;
 		try {
@@ -240,6 +308,47 @@ public class BookingDao extends BaseDaoImpl{
 		return bookingList!=null && bookingList.size()>0?(Booking) bookingList.get(0):null;
 		
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Booking> getBookingHistory(String passengerId) throws Exception {
+		List<Booking> bookingList=null;
+		try {
+			String pnrListStr = getAllpnrListForPassenger(passengerId);
+			Query query = sf.getCurrentSession().createQuery("from Booking as booking where booking.pnrNo IN ("+pnrListStr+")");
+			bookingList = (List<Booking>)query.list();
+		} catch (Exception e) {
+			throw e;
+		}
+		return bookingList;
+		
+	}
+	
+	
+	public String getAllpnrListForPassenger(String passengerId) {
+		
+		Query query = sf.getCurrentSession().createQuery("select passHis.pnrNo from PassengerBookingHistory as passHis where passHis.passenger.passengerId = :passengerId");
+		query.setParameter("passengerId", passengerId);
+		StringBuilder pnrStr=new StringBuilder();
+		List list =(List<Long>) query.list();
+		Iterator iterator = list.iterator();
+		while(iterator.hasNext()) {
+			pnrStr.append("'"+iterator.next().toString()+"',");
+		}
+		
+		if(pnrStr.toString().endsWith(",")) {
+			pnrStr=pnrStr.replace(pnrStr.length()-1, pnrStr.length(), "");
+		}
+		
+		return pnrStr.toString();
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

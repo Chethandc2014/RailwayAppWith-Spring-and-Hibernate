@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.irc.dao.BookingDao;
-import com.irc.dto.BookingDTO;
+import com.irc.dto.BookingDto;
 import com.irc.entity.Booking;
 import com.irc.entity.Coach;
 import com.irc.entity.CoachSeatNotAvailableException;
@@ -24,15 +26,21 @@ import com.irc.entity.Route;
 import com.irc.entity.Train;
 import com.irc.exception.BookingNotAvailableException;
 import com.irc.exception.TrainNotExistException;
+import com.irc.util.AppUtil;
 
 @Service
+@Transactional
 public class BookingService {
 
 	@Autowired
 	BookingDao bookingDao;
 	
-	@Transactional
-	public JSONObject bookTiket(BookingDTO bookingDTO) {
+	/**
+	 * @param bookingDTO
+	 * @return
+	 */
+	
+	public JSONObject bookTiket(BookingDto bookingDTO) {
 		JSONObject response = new JSONObject();
 		try {
 			//Booking Business Logic
@@ -94,7 +102,14 @@ public class BookingService {
 		
 	}
 
-	private Booking generateBookingEntity(BookingDTO  bookingDTO,short coachId) throws ParseException, CoachSeatNotAvailableException  {
+	/**
+	 * @param bookingDTO
+	 * @param coachId
+	 * @return
+	 * @throws ParseException
+	 * @throws CoachSeatNotAvailableException
+	 */
+	private Booking generateBookingEntity(BookingDto  bookingDTO,short coachId) throws ParseException, CoachSeatNotAvailableException  {
 		Date dateOfJourney = new SimpleDateFormat("dd/MM/yyyy").parse(bookingDTO.getDateOfJourney());
 		short trainId=Short.valueOf(bookingDTO.getTrainNo());
 		short routeId = Short.parseShort(bookingDTO.getRouteId());
@@ -122,5 +137,24 @@ public class BookingService {
 		booking.setDestinationStn(bookingDTO.getDeBoardingStn());
 		return booking;
 	}
+	
+	
+	public ObjectNode getBookingHistory(String passengerId) {
+		ObjectNode responseJson = AppUtil.getObjectNodeInstance();
+
+		try {
+			List<Booking> bookingHistory = bookingDao.getBookingHistory(passengerId);
+			responseJson.put("bookingHisList", AppUtil.parseEntityListToString(bookingHistory));
+			responseJson.put(STATUS, SUCCESS);
+		}catch(Exception e) {
+			e.printStackTrace();
+			responseJson.put(STATUS, FAIL);	
+			responseJson.put(MESSAGE, e.getMessage());
+		}
+		return responseJson;
+		
+	}
+	
+	
 
 }

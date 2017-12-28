@@ -88,11 +88,18 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- Oracle Driver Manager for Connection -->
-		<dependency>
+		<!-- Oracle Driver Manager for Connection for Prod -->
+		<!-- <dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0</version>
+		</dependency> -->
+		
+		<!-- Development purpose -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.195</version>
 		</dependency>
 
 		<!-- JUnit for Unit Test -->

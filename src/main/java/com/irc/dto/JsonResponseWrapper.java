@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import org.json.JSONObject;
 
+import com.fasterxml.jackson.annotation.JsonRawValue;
+
 public class JsonResponseWrapper implements Serializable {
 
 	/**
@@ -17,6 +19,7 @@ public class JsonResponseWrapper implements Serializable {
 		return jsonResponseWrapper;
 	}
 
+    //@JsonRawValue
 	private String response;
 
 	public String getResponse() {

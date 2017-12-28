@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.irc.dto.BookingDTO;
+import com.irc.dto.BookingDto;
 import com.irc.exception.TrainNotExistException;
 
 
@@ -25,7 +25,7 @@ public class BookingServiceTest {
 	@Test
 	public void testBookTiketFor1ACoach() {
 		
-		BookingDTO bookingDTO=new BookingDTO();
+		BookingDto bookingDTO=new BookingDto();
 		bookingDTO.setRouteId("1");
 		bookingDTO.setTrainNo("1236");
 		bookingDTO.setSeatType("2A");
@@ -38,7 +38,7 @@ public class BookingServiceTest {
 	@Test
 	public void testBookTiketForBookingFull() {
 		
-		BookingDTO bookingDTO=new BookingDTO();
+		BookingDto bookingDTO=new BookingDto();
 		bookingDTO.setRouteId("1");
 		bookingDTO.setTrainNo("1235");
 		bookingDTO.setSeatType("1A");
@@ -51,7 +51,7 @@ public class BookingServiceTest {
 	@Test(expected=TrainNotExistException.class)
 	public void testBookTiketForTrainNotAvilableExce() {
 		
-		BookingDTO bookingDTO=new BookingDTO();
+		BookingDto bookingDTO=new BookingDto();
 		bookingDTO.setRouteId("1");
 		bookingDTO.setTrainNo("1230");
 		bookingDTO.setSeatType("1A");

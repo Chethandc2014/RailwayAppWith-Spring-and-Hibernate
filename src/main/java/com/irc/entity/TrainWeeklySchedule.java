@@ -26,6 +26,7 @@ public class TrainWeeklySchedule implements java.io.Serializable {
 	private Boolean dayFriday;
 	private Boolean daySaturday;
 	private Set<TrainSchedule> trainSchedules = new HashSet<TrainSchedule>(0);
+	private Set<RouteTrain> routeTrains = new HashSet<RouteTrain>(0);
 
 	public TrainWeeklySchedule() {
 	}
@@ -129,6 +130,15 @@ public class TrainWeeklySchedule implements java.io.Serializable {
 
 	public void setTrainSchedules(Set<TrainSchedule> trainSchedules) {
 		this.trainSchedules = trainSchedules;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "trainWeeklySchedule")
+	public Set<RouteTrain> getRouteTrains() {
+		return this.routeTrains;
+	}
+
+	public void setRouteTrains(Set<RouteTrain> routeTrains) {
+		this.routeTrains = routeTrains;
 	}
 
 }

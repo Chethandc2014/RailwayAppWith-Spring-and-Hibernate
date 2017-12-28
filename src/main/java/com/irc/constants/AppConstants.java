@@ -22,6 +22,13 @@ public class AppConstants {
 	public static final String COACH_SL_TOTAL="coachSlTotal";
 	public static final String COACH_2S_TOTAL="coach2sTotal";
 	
+	public static final String SUCCESS="success";
+	public static final String FAIL="fail";
+	
+	public static final String STATUS="status";
+	public static final String MESSAGE="message";
+	
+	
 	
 	
 	

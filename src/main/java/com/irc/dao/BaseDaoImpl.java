@@ -17,14 +17,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class BaseDaoImpl implements BaseDao {
 
 	    @Autowired
-	 SessionFactory sf;
+	protected SessionFactory sf;
 		
 		@Transactional
 		public Object create(Object object) throws Exception {
 	
 			try {
 				Session session = sf.getCurrentSession();
-				return session.save(object);
+				 Serializable id = session.save(object);
+				 
+				 return id;
 			} catch (Exception e) {
 				throw new Exception("Exception got while adding object", e);
 			}

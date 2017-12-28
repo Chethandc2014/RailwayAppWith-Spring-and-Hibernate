@@ -22,6 +22,11 @@
 		<class> com.irc.entity.TrainSchedule </class>
 		<class> com.irc.entity.TrainStatus </class>
 		<class> com.irc.entity.TrainWeeklySchedule </class>
+		<class> com.irc.entity.TrainWeeklySchedule </class>
+		<class> com.irc.entity.RouteStation </class>
+		<class> com.irc.entity.RouteTrain </class>
+		<class> com.irc.entity.RouteTrainId </class>
+		
 		<properties>
 			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
 			<property name="hibernate.connection.password" value="INDIAN_RAILWAYS" />
