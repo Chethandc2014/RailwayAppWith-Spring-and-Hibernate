@@ -2,6 +2,9 @@ package com.irc.dao;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.Serializable;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +23,19 @@ public class AdminDaoTest {
 	AdminDao adminDao;
 	
 	@Test
-	@Transactional
+	//@Transactional
 	public void testAddTrain() throws Exception {
 		Train trn=new Train();
-		trn.setTrainId((short) 1238);
-		adminDao.addTrain(trn);
-		
+		trn.setTrainName("KARNATAKA EXP");
+		trn.setTrainAvgSpeed("90");
+		trn.setTrainModel("KJF");
+		trn.setTrainId((short) 1350);
+	 Serializable id=adminDao.addTrain(trn);
+	 Assert.assertNotNull("Added Train successfully...", id);
+		//Check session.save() method doc
 	}
-	@Test()
-	@Transactional
+	//@Test()
+	//@Transactional
 	public void testDeletTrain() {
 		try {
 			adminDao.deleteTrain(1239);//this will not throw any exception if Entity is not there in  DB/// similar to DELERE  FROM TABLE_NAME WHERE COLUMN_NAME='VALUE' ==>RETURN 0 if no records found
@@ -37,8 +44,8 @@ public class AdminDaoTest {
 		}
 	}
 	
-	@Test()
-	@Transactional
+	//@Test()
+	//@Transactional
 	public void testAddCoachToTrain() {
 
 		Train trn=new Train();

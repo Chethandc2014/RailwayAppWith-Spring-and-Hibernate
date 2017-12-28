@@ -4,10 +4,15 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.irc.dao.AdminDao;
 import com.irc.dto.TrainDto;
 import com.irc.entity.Train;
+import com.irc.util.AppUtil;
+
 import static com.irc.constants.AppConstants.*;
+
+import java.io.Serializable;
 
 @Service
 public class AdminService {
@@ -15,14 +20,15 @@ public class AdminService {
 	@Autowired
 	AdminDao adminDao;
 
-	public JSONObject addTrain(TrainDto trainDto) {
-		
-		JSONObject response=new JSONObject();
+	public ObjectNode addTrain(TrainDto trainDto) {
+		ObjectNode response = AppUtil.getObjectNodeInstance();
+		//JSONObject response=new JSONObject();
 		Train train = null;
 		try {
 			train = convertTrainDtoToTrainEntity(trainDto);
-			adminDao.addTrain(train);
+			Serializable trainId = adminDao.addTrain(train);
 			response.put(STATUS, SUCCESS);
+			response.put("trainId", trainId.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.put(STATUS, FAIL);
@@ -69,7 +75,11 @@ public class AdminService {
 	}
 	
 	private Train convertTrainDtoToTrainEntity(TrainDto trainDto) {
-		return null;
+		Train train=new Train();
+		train.setTrainId(Short.valueOf(trainDto.getTrainId()));
+		train.setTrainName(trainDto.getTrainName());
+		train.setTrainModel(trainDto.getModel());
+		return train;
 	}
 
 
