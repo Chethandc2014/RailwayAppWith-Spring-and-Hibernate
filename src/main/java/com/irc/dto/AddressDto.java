@@ -1,11 +1,28 @@
 package com.irc.dto;
 
-public class AddressDto {
+import java.io.Serializable;
+
+public class AddressDto implements Serializable{
 	
 	String houseNo;
 	String street;
 	String taluk;
+	String district;
+	String state;
 	
+	
+	public String getDistrict() {
+		return district;
+	}
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public String getHouseNo() {
 		return houseNo;
 	}

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static com.irc.constants.AppConstants.*;
 
+import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,6 +23,8 @@ import com.irc.dto.TrainSearchDto;
 import com.irc.entity.Booking;
 import com.irc.entity.Passenger;
 import com.irc.entity.Train;
+import com.irc.util.AppUtil;
+
 import static com.irc.constants.AppConstants.*;
 @Service
 public class PassengerService {
@@ -85,9 +88,6 @@ public class PassengerService {
 		return response;
 	}
 	
-	public void getBookingHistory() {
-
-	}
 	
 	public void passwordChange() {
 
@@ -107,29 +107,28 @@ public class PassengerService {
 	@Transactional
 	public ObjectNode searchTrain(TrainSearchDto dto) {
 		
-		ObjectMapper mapperResponse = new ObjectMapper();
-		ObjectNode response = mapperResponse.createObjectNode();//Similar use case like //JSONObject response=new JSONObject(); 
+		ObjectNode response = AppUtil.getObjectNodeInstance();//Similar use case like //JSONObject response=new JSONObject(); 
+		
 		Date dateOfJourney=null;
+		
 		try {
-			try {
-				dateOfJourney =new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDateOfJourney());
-			} catch (ParseException e) {
-				e.printStackTrace();
-			return	response.put(FAIL, "Invalided Date formate..");
-			}
-			//List<Train> trains = searchswe.getTrains(dto.getSource(), dto.getDestination(),dateOfJourney);
-			List<Train> trains=searchService.getTrainForSourceAndDestinationStn(dto.getSource(), dto.getDestination(), dateOfJourney);
+				try {
+					dateOfJourney =new SimpleDateFormat("dd/MM/yyyy").parse(dto.getDateOfJourney());
+				} catch (ParseException e) {
+					e.printStackTrace();
+				return	response.put(FAIL, "Invalided Date formate..");
+				}
 			
-			ObjectMapper objectMapper=new ObjectMapper();//For Converting POJO to JSON..
-			try {
-				//response.put("trainList", trains);//Getting error--changing using  jackson API comversion
-				String trainListStr = objectMapper.writeValueAsString(trains);
-				response.put("trainList", trainListStr);
-				response.put(STATUS, SUCCESS);
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
-				return	response.put(FAIL, "Error while parsing entities..."+e.getMessage());
-			}			
+		    	List<Train> trains=searchService.getTrainForSourceAndDestinationStn(dto.getSource(), dto.getDestination(), dateOfJourney);
+			
+				try {
+					//response.put("trainList", trains);//Getting error--changing using  jackson API comversion
+					response.put("trainList", AppUtil.parseEntityListToString(trains));
+					response.put(STATUS, SUCCESS);
+				} catch (Exception e) {
+					e.printStackTrace();
+					return	response.put(FAIL, e.getMessage());
+				}			
 		}catch(Exception e) {
 			e.printStackTrace();
 			return	response.put(FAIL, e.getMessage());

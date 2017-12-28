@@ -53,6 +53,7 @@ public class RouteTrain implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ROUTE_ID", nullable = false, insertable = false, updatable = false)
+	@JsonManagedReference
 	public Route getRoute() {
 		return this.route;
 	}
@@ -74,6 +75,7 @@ public class RouteTrain implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "TRAIN_WEEKLY_SCHEDULE_ID", nullable = false, insertable = false, updatable = false)
+	@JsonManagedReference
 	public TrainWeeklySchedule getTrainWeeklySchedule() {
 		return this.trainWeeklySchedule;
 	}

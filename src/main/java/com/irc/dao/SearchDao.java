@@ -39,7 +39,7 @@ public class SearchDao extends BaseDaoImpl{
 		
 		//String hql="select route from Route route where route.routeId = :routeId";
 		String hql="select routeStation.station from RouteStation as routeStation where routeStation.route.routeId = :routeId";
-          Session session = sf.openSession();
+          Session session = sf.getCurrentSession();
           Query query = session.createQuery(hql);
           query.setParameter("routeId",(short) routeId);
           
@@ -61,7 +61,7 @@ public class SearchDao extends BaseDaoImpl{
 		String hql="select routeStation.route.routeId,routeStation.routeStnOrder from RouteStation as routeStation where routeStation.station.stationName= :stn";
 		
 		
-		Session session = sf.openSession();
+		Session session = sf.getCurrentSession();
 		Query query = session.createQuery(hql);
 		
 		query.setParameter("stn", stn);
@@ -86,7 +86,7 @@ public class SearchDao extends BaseDaoImpl{
 	@Transactional
 	public ArrayList<Train> getTrainsForRoute(ArrayList<Short> routeList,int DayOfJourney) {
 	
-		Session session = sf.openSession();
+		Session session = sf.getCurrentSession();
 		
 		//String hql="select routeTrain.train from RouteTrain as routeTrain where routeTrain.route.routeId in ";
 		

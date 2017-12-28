@@ -1,6 +1,8 @@
 package com.irc.dto;
 
-public class PassengerDto {
+import java.io.Serializable;
+
+public class PassengerDto implements Serializable{
 
 	String id;
 	String name;

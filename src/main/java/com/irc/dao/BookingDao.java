@@ -15,6 +15,7 @@ import static com.irc.constants.AppConstants.COACH_SL;
 import static com.irc.constants.AppConstants.COACH_SL_TOTAL;
 import static com.irc.constants.AppConstants.SEAT_NO;
 
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -306,6 +308,47 @@ public class BookingDao extends BaseDaoImpl{
 		return bookingList!=null && bookingList.size()>0?(Booking) bookingList.get(0):null;
 		
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Booking> getBookingHistory(String passengerId) throws Exception {
+		List<Booking> bookingList=null;
+		try {
+			String pnrListStr = getAllpnrListForPassenger(passengerId);
+			Query query = sf.getCurrentSession().createQuery("from Booking as booking where booking.pnrNo IN ("+pnrListStr+")");
+			bookingList = (List<Booking>)query.list();
+		} catch (Exception e) {
+			throw e;
+		}
+		return bookingList;
+		
+	}
+	
+	
+	public String getAllpnrListForPassenger(String passengerId) {
+		
+		Query query = sf.getCurrentSession().createQuery("select passHis.pnrNo from PassengerBookingHistory as passHis where passHis.passenger.passengerId = :passengerId");
+		query.setParameter("passengerId", passengerId);
+		StringBuilder pnrStr=new StringBuilder();
+		List list =(List<Long>) query.list();
+		Iterator iterator = list.iterator();
+		while(iterator.hasNext()) {
+			pnrStr.append("'"+iterator.next().toString()+"',");
+		}
+		
+		if(pnrStr.toString().endsWith(",")) {
+			pnrStr=pnrStr.replace(pnrStr.length()-1, pnrStr.length(), "");
+		}
+		
+		return pnrStr.toString();
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

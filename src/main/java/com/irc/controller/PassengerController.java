@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,7 @@ public class PassengerController {
 	
 	@Autowired
 	BookingService bookingService;
+	
 	 
 	@RequestMapping(value="/register",method=RequestMethod.POST,consumes="application/json",produces="application/json")
 	public JsonResponseWrapper register(@RequestBody PassengerDto passengerDto) {
@@ -55,6 +57,13 @@ public class PassengerController {
 
 	}
 	
+	@RequestMapping(value="/booking/history{passengerId}",method=RequestMethod.GET,produces="application/json")
+	public  ObjectNode getBookingHistory(@PathVariable String  passengerId) {
+		ObjectNode objectNode = bookingService.getBookingHistory(passengerId);
+		return objectNode;
+
+	}
+	
 	@RequestMapping(value="/booking",method=RequestMethod.POST,consumes="application/json",produces="application/json")
 	public  JsonResponseWrapper bookTicket(@RequestBody BookingDto bookingDTO,HttpServletResponse httpResponse) {
 		JSONObject response = bookingService.bookTiket(bookingDTO);
@@ -64,5 +73,10 @@ public class PassengerController {
 		JsonResponseWrapper.createResponseWrapper(response.toString());
 		return JsonResponseWrapper.createResponseWrapper(response.toString());
 	}
+	
+	
+	
+	
+	
 	
 }
