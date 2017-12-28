@@ -3,13 +3,18 @@ package com.irc.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -44,6 +49,8 @@ public class PassengerAddress implements java.io.Serializable {
 	@Id
 
 	@Column(name = "PASSENGER_ADDRESS_ID", unique = true, nullable = false, precision = 4, scale = 0)
+	@SequenceGenerator(sequenceName="INDIAN_RAILWAYS.PASSENGER_ADDRESS_SEQ",name="addressSeq",allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="addressSeq")
 	public short getPassengerAddressId() {
 		return this.passengerAddressId;
 	}
@@ -80,7 +87,7 @@ public class PassengerAddress implements java.io.Serializable {
 		this.street = street;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "passengerAddress")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "passengerAddress",cascade=CascadeType.ALL)
 	public Set<Passenger> getPassengers() {
 		return this.passengers;
 	}
