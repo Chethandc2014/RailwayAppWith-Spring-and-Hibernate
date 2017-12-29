@@ -29,18 +29,17 @@ public class AdminController {
 		return response;
 	}
 	
-	@RequestMapping(value="/addTrain/{trainId}",method=RequestMethod.PUT)
-	public JsonResponseWrapper updateTrain(@PathVariable("trainId") String tainId,@RequestBody TrainDto trainDto) {
+	@RequestMapping(value="/updateTrain",method=RequestMethod.PUT)
+	public ObjectNode updateTrain(@RequestBody TrainDto trainDto) {
 		
-		JSONObject addTrain = adminService.updateTrain(trainDto);
-		JsonResponseWrapper responseWrapper = JsonResponseWrapper.createResponseWrapper(addTrain.toString());
-		return responseWrapper;
+		ObjectNode response = adminService.updateTrain(trainDto);
+		return response;
 	}
 	
-	@RequestMapping(value="/deleteTrain",method=RequestMethod.DELETE)
-	public JsonResponseWrapper deleteTrain(@RequestParam("tainId") String tainId) {
-		adminService.deleteTrain(tainId);
-		return null;
+	@RequestMapping(value="/deleteTrain/{trainId}",method=RequestMethod.DELETE)
+	public ObjectNode deleteTrain(@PathVariable("trainId") String trainId) {
+		ObjectNode response = adminService.deleteTrain(trainId);
+		return response;
 	}
 	
 	
