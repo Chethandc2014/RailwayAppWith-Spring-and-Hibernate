@@ -10,8 +10,8 @@ public class BookingDto implements Serializable {
 	private static final long serialVersionUID = 610717802082333615L;
 	
 	private String trainNo;
-	private String coachId;
-	private String coachType;
+/*	private String coachId;
+	private String coachType;*/
 	private String routeId;
 	private String seatType;
 	private String dateOfJourney;
@@ -51,7 +51,7 @@ public class BookingDto implements Serializable {
 		this.trainNo = trainNo;
 	}
 
-	public String getCoachId() {
+	/*public String getCoachId() {
 		return coachId;
 	}
 
@@ -65,7 +65,7 @@ public class BookingDto implements Serializable {
 
 	public void setCoachType(String coachType) {
 		this.coachType = coachType;
-	}
+	}*/
 
 	public String getSeatType() {
 		return seatType;

@@ -38,9 +38,10 @@ public class AdminService {
 	}
 
 
-	public JSONObject updateTrain(TrainDto trainDto) {
+	public ObjectNode updateTrain(TrainDto trainDto) {
 		
-		JSONObject response=new JSONObject();
+		//JSONObject response=new JSONObject();
+		ObjectNode response = AppUtil.getObjectNodeInstance();
 		Train train = null;
 		try {
 			 train = convertTrainDtoToTrainEntity(trainDto);
@@ -55,8 +56,9 @@ public class AdminService {
 	}
 	
 	
-	public JSONObject deleteTrain(String tainId) {
-		JSONObject response=new JSONObject();
+	public ObjectNode deleteTrain(String tainId) {
+		//JSONObject response=new JSONObject();
+		ObjectNode response = AppUtil.getObjectNodeInstance();
 		
 		try {
 			adminDao.deleteTrain(Integer.parseInt(tainId));
