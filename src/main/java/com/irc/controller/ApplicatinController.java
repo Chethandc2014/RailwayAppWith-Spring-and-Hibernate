@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.irc.dto.BookingDto;
 import com.irc.dto.JsonResponseWrapper;
+import com.irc.service.ApplicationService;
 import com.irc.service.BookingService;
 
 @RestController
@@ -29,16 +32,32 @@ public class ApplicatinController {
 	@Autowired
 	BookingService bookingService;
 	
+	@Autowired
+	ApplicationService applicationService;
 	
-	@RequestMapping(value="/booking",method=RequestMethod.POST,consumes="application/json",produces="application/json")
-	public  JsonResponseWrapper bookTicket(@RequestBody BookingDto bookingDTO,HttpServletResponse httpResponse) {
-		JSONObject response = bookingService.bookTiket(bookingDTO);
-		// httpResponse.setHeader("Access-Control-Allow-Origin", "http://localhost:8090");
-		//httpResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-		//httpResponse.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+
+	@RequestMapping(value="/registration/dropdowns/states",method=RequestMethod.GET)
+	public  ObjectNode getStates() {//States
+
+		ObjectNode response = applicationService.getStates();
+		return response;
 		
-		JsonResponseWrapper.createResponseWrapper(response.toString());
-		return JsonResponseWrapper.createResponseWrapper(response.toString());
+	}
+	
+	@RequestMapping(value="/registration/dropdowns/states/{stateId}",method=RequestMethod.GET)
+	public  ObjectNode getDistrictsByStateId(@PathVariable String stateId) {//Disricts 
+
+		ObjectNode response = applicationService.getDistrictsByStateId(stateId);
+		return response;
+		
+	}
+	
+	@RequestMapping(value="/registration/dropdowns/states/districts/{districtId}",method=RequestMethod.GET)
+	public  ObjectNode getTaluksByDistrictId(@PathVariable String districtId) {//Taluks
+
+		ObjectNode response = applicationService.getTaluksByDistrictId(districtId);
+		return response;
+		
 	}
 	
 }
