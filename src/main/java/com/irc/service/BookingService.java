@@ -49,6 +49,7 @@ public class BookingService {
 			Date dateOfJourney=new SimpleDateFormat("dd/MM/yyyy").parse(bookingDTO.getDateOfJourney());
 			short routeId=Short.parseShort(bookingDTO.getRouteId());
 			short trainId=Short.parseShort(bookingDTO.getTrainNo());
+			String userId=bookingDTO.getUserId();
 			String coachType=bookingDTO.getSeatType();
 			Map<String, Short> currentBookingCoachAndSeatNoMap = bookingDao.getActiveBookingCoachIdAndSeatNO(dateOfJourney,routeId,trainId, coachType);
 			
@@ -59,13 +60,13 @@ public class BookingService {
 			if(currentCoachId ==null || currentSeatNo==null) {//No Booking add for Coach.. First seat Booking for CoachType in Route
 				Short nextCoachId = bookingDao.getNextCoachIDByDateRouteAndTrainId(dateOfJourney, routeId, trainId, coachType);
 				Booking booking = generateBookingEntity(bookingDTO,nextCoachId);
-				Booking bookingInfo = bookingDao.bookTicket(booking);
+				Booking bookingInfo = bookingDao.bookTicket(userId,booking);
 				response.put("isBokingSuccess", true);
 				response.put("message", "Booking Done succesfully..");
 				response.put("bookingInfo", bookingInfo);
 			}else if(currentSeatNo.shortValue()<coachSeatLimit.shortValue()) {//Checking for current Coach is Available for Booking
 				Booking booking = generateBookingEntity(bookingDTO,currentCoachId);
-				Booking bookingInfo = bookingDao.bookTicket(booking);
+				Booking bookingInfo = bookingDao.bookTicket(userId,booking);
 				response.put("isBokingSuccess", true);
 				response.put("message", "Booking Done succesfully..");
 				response.put("bookingInfo", bookingInfo);
@@ -76,7 +77,7 @@ public class BookingService {
 					Short nextCoachId = bookingDao.getNextCoachIDByDateRouteAndTrainId(dateOfJourney, routeId, trainId, coachType);
 					//3)Book Ticket using NextCoachID
 					Booking booking = generateBookingEntity(bookingDTO,nextCoachId);
-					Booking bookingInfo = bookingDao.bookTicket(booking);
+					Booking bookingInfo = bookingDao.bookTicket(userId,booking);
 					response.put("isBokingSuccess", true);
 					response.put("message", "Booking Done succesfully..");
 					response.put("bookingInfo", bookingInfo);
@@ -135,8 +136,21 @@ public class BookingService {
 		booking.setDateOfBooking(Calendar.getInstance().getTime());
 		booking.setSourceStn(bookingDTO.getBoardingStn());
 		booking.setDestinationStn(bookingDTO.getDeBoardingStn());
+		
+		long pnrDate=Long.parseLong(bookingDTO.getDateOfJourney().replaceAll("/", ""));
+		long pnrSeatNo=seatNo;
+		long pnrTrainNo=trainId;
+		long pnrcoachId=coachId;
+		String pnrNo=Long.valueOf(pnrTrainNo).toString()+Long.valueOf(pnrDate).toString()+Long.valueOf(pnrcoachId).toString()+Long.valueOf(pnrSeatNo).toString();
+		booking.setPnrNo(Long.valueOf(pnrNo));
+		//booking.setPassengerId(bookingDTO.getUserId());//PnrNo and PassengerId used for persisting BookingHistory...
+		
+		booking.setSeatConfirmed("Y");
+		
 		return booking;
 	}
+	
+	
 	
 	
 	public ObjectNode getBookingHistory(String passengerId) {
