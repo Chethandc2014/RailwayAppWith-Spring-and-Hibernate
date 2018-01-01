@@ -37,6 +37,8 @@ import com.irc.entity.Booking;
 import com.irc.entity.Coach;
 import com.irc.entity.CoachSeatNotAvailableException;
 import com.irc.entity.CoachType;
+import com.irc.entity.Passenger;
+import com.irc.entity.PassengerBookingHistory;
 import com.irc.entity.Train;
 import com.irc.exception.BookingNotAvailableException;
 import com.irc.exception.TrainNotExistException;
@@ -53,12 +55,35 @@ public class BookingDao extends BaseDaoImpl{
 	 * @return
 	 * @throws Exception
 	 */
-	public Booking bookTicket(Booking booking) throws Exception {
+	public Booking bookTicket(String userId,Booking booking) throws Exception {
 		
 		Serializable id = (Serializable) create(booking);
 		Booking successBookingInfo = (Booking) getEntityById(Booking.class, id);
+		persistPnrNo(userId,booking.getPnrNo());
 		return successBookingInfo;
 	}
+	
+	
+	public void persistPnrNo(String passengerId,Long pnrNo){
+		
+		PassengerBookingHistory bookingHistory=new PassengerBookingHistory();
+		bookingHistory.setPnrNo(pnrNo);
+		
+		Passenger passenger = new Passenger();
+		passenger.setPassengerId(passengerId);
+		bookingHistory.setPassenger(passenger);
+		
+		try {
+			create(bookingHistory);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	
 	
 	/**
 	 * @param dateOfJourney

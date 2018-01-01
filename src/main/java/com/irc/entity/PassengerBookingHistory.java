@@ -1,12 +1,16 @@
 package com.irc.entity;
 // Generated 3 Nov, 2017 10:44:37 PM by Hibernate Tools 4.3.5.Final
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -34,8 +38,9 @@ public class PassengerBookingHistory implements java.io.Serializable {
 	}
 
 	@Id
-
 	@Column(name = "PSNGR_BKG_ID", unique = true, nullable = false, precision = 4, scale = 0)
+	@SequenceGenerator(sequenceName="INDIAN_RAILWAYS.PSNGER_BOOKING_HIS_SEQ",name="passengerHisSeq",allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="passengerHisSeq")
 	public short getPsngrBkgId() {
 		return this.psngrBkgId;
 	}

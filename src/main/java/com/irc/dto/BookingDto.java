@@ -14,6 +14,7 @@ public class BookingDto implements Serializable {
 	private String coachType;*/
 	private String routeId;
 	private String seatType;
+	private String userId;
 	private String dateOfJourney;
 	private String dateOfBooking;
 	private String boardingStn;
@@ -29,6 +30,14 @@ public class BookingDto implements Serializable {
 
 	public void setBoardingStn(String boardingStn) {
 		this.boardingStn = boardingStn;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getRouteId() {

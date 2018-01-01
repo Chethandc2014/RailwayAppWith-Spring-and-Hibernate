@@ -42,7 +42,7 @@ public class ApplicationService {
 		try {
 			
 			List<District> districtList = applicationDao.getDistrictsByStateId(stateId);
-			response.put("stateList",AppUtil.parseEntityListToString(districtList));
+			response.put("districtList",AppUtil.parseEntityListToString(districtList));
 			response.put(STATUS, SUCCESS);
 		}catch(Exception e) {
 			response.put(STATUS, FAIL);
@@ -58,7 +58,7 @@ public class ApplicationService {
 		try {
 			
 			List<Taluk> talukList = applicationDao.getTaluksByDistrictId(districtId);
-			response.put("stateList",AppUtil.parseEntityListToString(talukList));
+			response.put("talukList",AppUtil.parseEntityListToString(talukList));
 			response.put(STATUS, SUCCESS);
 		}catch(Exception e) {
 			response.put(STATUS, FAIL);
