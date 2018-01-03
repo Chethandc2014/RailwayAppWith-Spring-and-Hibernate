@@ -91,14 +91,16 @@ public class MyRestTest {
 		//ResponseEntity<ObjectNode> exchange1 = restTemplate.exchange("/getEmployee/{id}", HttpMethod.GET,entity,ObjectNode.class);//Overloaded method without URI params...
 		
 		//Other use cases RequestEntity request = RequestEntity
-		/*try {
+		try {
 			RequestEntity<PassengerDto> reuestEnityBody = RequestEntity.post(new URI("http://example.com/foo"))
 			 .accept(MediaType.APPLICATION_JSON)
 			 .body(dto);
+		
+			ResponseEntity<ObjectNode> response1 = restTemplate.exchange(reuestEnityBody, ObjectNode.class);
 		} catch (URISyntaxException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}*/
+		}
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			String writeValueAsString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(response);
