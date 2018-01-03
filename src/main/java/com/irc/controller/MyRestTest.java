@@ -1,10 +1,17 @@
 package com.irc.controller;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -74,6 +81,24 @@ public class MyRestTest {
 	  //HashMap<String, String> map=new HashMap<String, String>();
 	
 		ResponseEntity<ObjectNode> response = restTemplate.postForEntity("http://localhost:8000/IndianRailways/app/passangerCtrl/register", dto,ObjectNode.class);
+		
+		//restTemplate.put(url, request, urlVariables);   //-->for PUT
+		//String id="123";
+		//HttpEntity<Object> entity=new HttpEntity<Object>(dto,null);//containes Request body and header 
+		
+		//ResponseEntity<ObjectNode> exchange = restTemplate.exchange("/getEmployee/{id}", HttpMethod.GET,null,ObjectNode.class,id);//Entitiy can be nullable
+		//ResponseEntity<ObjectNode> exchange2 = restTemplate.exchange("/getEmployee/{id}", HttpMethod.GET,entity,ObjectNode.class,id);//ds is URI parameters such as /{id}
+		//ResponseEntity<ObjectNode> exchange1 = restTemplate.exchange("/getEmployee/{id}", HttpMethod.GET,entity,ObjectNode.class);//Overloaded method without URI params...
+		
+		//Other use cases RequestEntity request = RequestEntity
+		/*try {
+			RequestEntity<PassengerDto> reuestEnityBody = RequestEntity.post(new URI("http://example.com/foo"))
+			 .accept(MediaType.APPLICATION_JSON)
+			 .body(dto);
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}*/
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			String writeValueAsString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(response);
